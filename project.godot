@@ -11,10 +11,20 @@ config_version=5
 [application]
 
 config/name="Ludum Dare #58"
+run/main_scene="uid://dt4nq0nkmjiit"
 config/features=PackedStringArray("4.5", "GL Compatibility")
 config/icon="res://icon.svg"
+
+[display]
+
+window/size/viewport_width=700
+window/size/viewport_height=700
+window/size/resizable=false
+window/handheld/orientation=1
 
 [rendering]
 
 renderer/rendering_method="gl_compatibility"
 renderer/rendering_method.mobile="gl_compatibility"
+textures/vram_compression/import_etc2_astc=true
+environment/defaults/default_clear_color=Color(0.93333334, 0.93333334, 0.94509804, 1)

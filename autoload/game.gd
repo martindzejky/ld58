@@ -1,0 +1,2 @@
+# Game autoload
+extends Node

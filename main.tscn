@@ -1,3 +1,17 @@
-[gd_scene format=3 uid="uid://dt4nq0nkmjiit"]
+[gd_scene load_steps=3 format=3 uid="uid://dt4nq0nkmjiit"]
+
+[ext_resource type="Script" uid="uid://b7yosgcuyw1we" path="res://scripts/camera.gd" id="1_0xm2m"]
+[ext_resource type="Texture2D" uid="uid://bpijxlegjyije" path="res://sprites/dot.png" id="1_ig7tw"]
 
 [node name="main" type="Node"]
+
+[node name="camera" type="Camera2D" parent="."]
+script = ExtResource("1_0xm2m")
+
+[node name="hive" type="Node2D" parent="."]
+
+[node name="sprite" type="Sprite2D" parent="hive"]
+modulate = Color(0.6, 0.5137255, 0.36078432, 1)
+position = Vector2(0, -59)
+scale = Vector2(101.76852, 121.27303)
+texture = ExtResource("1_ig7tw")
