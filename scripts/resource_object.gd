@@ -19,3 +19,5 @@ func take_damage(amount: int):
       var angle = randf_range(0.0, 2.0 * PI)
       var distance = randf_range(RESOURCE_ITEM_MIN_SPAWN_DISTANCE, RESOURCE_ITEM_MAX_SPAWN_DISTANCE)
       item.global_position = global_position + Vector2.UP.rotated(angle) * distance
+      if item.global_position.length() > Game.world_radius:
+        item.global_position = item.global_position.normalized() * Game.world_radius - 0.5
