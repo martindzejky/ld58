@@ -27,6 +27,7 @@ const MOVE_SPEED = 100.0
 const REACHED_TARGET_DISTANCE = 10.0
 
 @export var attack_cooldown_timer: Timer
+@export var haul_slot: Marker2D
 
 func _process(delta: float) -> void:
   match state:
@@ -85,6 +86,9 @@ func moving_to_hive_state(delta: float):
 
   var reached = move_to_target(delta)
   if reached:
+    if is_carrying_item():
+      var item = haul_slot.get_child(0)
+      Game.hive.collect_resource(item)
     state = State.IDLE
 
 func performing_job_state(delta: float):
@@ -95,6 +99,7 @@ func performing_job_state(delta: float):
   if not current_job.target:
     current_job.completed.emit()
     # find a new job from the same command
+    # TODO: there's an edge case: if we just destroyed a resource which spawned resource items, these will not have jobs registered yet
     if current_job.command:
       var available = current_job.command.jobs.filter(func(job: Command.Job): return job.worker == null and is_instance_valid(job.target))
       if available.size() > 0:
@@ -118,10 +123,34 @@ func performing_job_state(delta: float):
     # keep moving
     return
 
-  if attack_cooldown_timer.is_stopped():
-    attack_cooldown_timer.start()
-    if current_job.target and current_job.target.has_method('take_damage'):
-      current_job.target.take_damage(1) # TODO: force will be upgradable
+  interact_with_job_target()
+
+func is_carrying_item() -> bool:
+  return haul_slot.get_child_count() > 0
+
+func interact_with_job_target():
+  if not current_job or not current_job.target:
+    current_job = null
+    state = State.MOVING_TO_HIVE
+    target = Game.hive
+    return
+
+  if current_job.target is ResourceObject:
+    if attack_cooldown_timer.is_stopped():
+      attack_cooldown_timer.start()
+      current_job.target.take_damage(1)
+    return
+
+  if current_job.target is ResourceItem and not is_carrying_item():
+    current_job.target.pickup()
+    current_job.target.reparent(haul_slot)
+    current_job.target.position = Vector2.ZERO
+    # complete the job immediately and remove it from command
+    current_job.completed.emit()
+    current_job = null
+    target = Game.hive
+    state = State.MOVING_TO_HIVE
+    return
 
 func _on_wander_timer_timeout():
   state = State.IDLE

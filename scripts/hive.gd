@@ -5,3 +5,7 @@ func _enter_tree():
 
 func _exit_tree():
   Game.hive = null
+
+func collect_resource(resource: ResourceItem):
+  # TODO: collect resource
+  resource.queue_free()

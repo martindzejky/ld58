@@ -8,3 +8,13 @@ enum Type {
 
 @export var type: Type
 @export var amount: int = 1
+@export var job_target_area: Area2D
+
+@onready var initial_collision_layer: int = job_target_area.collision_layer
+
+func pickup():
+  # disable from becoming a job target while carried
+  job_target_area.collision_layer = 1
+
+func drop():
+  job_target_area.collision_layer = initial_collision_layer
