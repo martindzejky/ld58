@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://cuwxjbeipna8q"]
+
+[ext_resource type="Script" uid="uid://cireucdpkpbtv" path="res://scripts/resources_ui.gd" id="1_wnjsr"]
+[ext_resource type="PackedScene" uid="uid://dd3dtydgx0kos" path="res://ui/resource_display.tscn" id="2_qvlek"]
+
+[node name="resources" type="VBoxContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 4
+script = ExtResource("1_wnjsr")
+resource_display = ExtResource("2_qvlek")

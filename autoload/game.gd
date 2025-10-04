@@ -3,7 +3,12 @@ extends Node
 
 # type -> amount
 var resources = {}
+signal new_resource(type)
+signal resource_changed(type)
+
 var hive: Hive
+
+@export var tasks: Array[Task] = []
 
 # world radius only ever increases
 signal world_radius_changed
@@ -18,6 +23,7 @@ func collect_resource(resource: ResourceItem):
   var type = resource.type
   if type in resources:
     resources[type] += resource.amount
+    resource_changed.emit(type)
   else:
     resources[type] = resource.amount
-
+    new_resource.emit(type)

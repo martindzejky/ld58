@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://dd3dtydgx0kos"]
+
+[ext_resource type="Script" uid="uid://d3cy1qx251ybv" path="res://scripts/resource_display.gd" id="1_alkvs"]
+
+[node name="resource_display" type="Label"]
+script = ExtResource("1_alkvs")

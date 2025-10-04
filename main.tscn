@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://dt4nq0nkmjiit"]
+[gd_scene load_steps=9 format=3 uid="uid://dt4nq0nkmjiit"]
 
 [ext_resource type="Script" uid="uid://b7yosgcuyw1we" path="res://scripts/camera.gd" id="1_0xm2m"]
 [ext_resource type="PackedScene" uid="uid://bwt5l87xappyf" path="res://objects/hive.tscn" id="2_lquwl"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://bhsbt24u6cyfc" path="res://objects/unit.tscn" id="5_lquwl"]
 [ext_resource type="PackedScene" uid="uid://c1d2puo3pe4ht" path="res://objects/berry_bush.tscn" id="6_7mycd"]
 [ext_resource type="PackedScene" uid="uid://dnvbfp2j6i8tc" path="res://objects/stone.tscn" id="7_272bh"]
+[ext_resource type="PackedScene" uid="uid://cuwxjbeipna8q" path="res://ui/resources.tscn" id="8_5vw27"]
 
 [node name="main" type="Node2D"]
 y_sort_enabled = true
@@ -51,3 +52,12 @@ position = Vector2(209, -214)
 
 [node name="stone" parent="." instance=ExtResource("7_272bh")]
 position = Vector2(-162, -177)
+
+[node name="ui" type="CanvasLayer" parent="."]
+
+[node name="resources" parent="ui" instance=ExtResource("8_5vw27")]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_bottom = 0.0
+grow_horizontal = 0
+grow_vertical = 1
