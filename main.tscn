@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://dt4nq0nkmjiit"]
+[gd_scene load_steps=15 format=3 uid="uid://dt4nq0nkmjiit"]
 
 [ext_resource type="Script" uid="uid://b7yosgcuyw1we" path="res://scripts/camera.gd" id="1_0xm2m"]
 [ext_resource type="PackedScene" uid="uid://bwt5l87xappyf" path="res://objects/hive.tscn" id="2_lquwl"]
@@ -11,6 +11,17 @@
 [ext_resource type="PackedScene" uid="uid://cuwxjbeipna8q" path="res://ui/resources.tscn" id="8_5vw27"]
 [ext_resource type="PackedScene" uid="uid://bbeleqmxs6bba" path="res://objects/fruit.tscn" id="10_4c57u"]
 [ext_resource type="Script" uid="uid://pivgdd3uunhl" path="res://scripts/world_radius_mask.gd" id="11_k3r2a"]
+[ext_resource type="Shader" uid="uid://bst7qku8ssd1" path="res://shaders/world_mask.gdshader" id="12_maskshader"]
+[ext_resource type="Script" uid="uid://3n3j7psjkd0v" path="res://scripts/world_mask_controller.gd" id="13_maskscript"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMat_world_mask"]
+shader = ExtResource("12_maskshader")
+shader_parameter/world_center = Vector2(0, 0)
+shader_parameter/world_radius = 100.0
+shader_parameter/camera_pos = Vector2(0, 0)
+shader_parameter/camera_zoom = Vector2(1, 1)
+shader_parameter/viewport_size = Vector2(1024, 768)
+shader_parameter/feather = 0.0
 
 [node name="main" type="Node2D"]
 y_sort_enabled = true
@@ -32,11 +43,26 @@ script = ExtResource("3_kek77")
 radiuses = Array[float]([177.999, 286.025, 396.36])
 
 [node name="world_radius_mask" type="Polygon2D" parent="."]
+visible = false
 z_index = -1
 color = Color(0, 0, 0, 1)
 invert_enabled = true
 invert_border = 1024.0
 script = ExtResource("11_k3r2a")
+
+[node name="world_mask" type="CanvasLayer" parent="."]
+layer = -1
+script = ExtResource("13_maskscript")
+
+[node name="color_rect" type="ColorRect" parent="world_mask"]
+z_index = 100
+material = SubResource("ShaderMat_world_mask")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
 
 [node name="hive" parent="." instance=ExtResource("2_lquwl")]
 
