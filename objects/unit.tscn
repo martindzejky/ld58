@@ -1,0 +1,31 @@
+[gd_scene load_steps=3 format=3 uid="uid://bhsbt24u6cyfc"]
+
+[ext_resource type="Texture2D" uid="uid://bpijxlegjyije" path="res://sprites/dot.png" id="1_5j774"]
+[ext_resource type="Script" uid="uid://bm1hnf8p0nmkk" path="res://scripts/unit.gd" id="1_dberb"]
+
+[node name="unit" type="Node2D" node_paths=PackedStringArray("debug_label", "wander_timer", "wander_position_timer")]
+script = ExtResource("1_dberb")
+debug_label = NodePath("debug")
+wander_timer = NodePath("wander_timer")
+wander_position_timer = NodePath("wander_position_timer")
+
+[node name="sprite" type="Sprite2D" parent="."]
+modulate = Color(0.07277774, 0.088193335, 0.09028817, 1)
+position = Vector2(0, -19.000004)
+scale = Vector2(22.007362, 37.75831)
+texture = ExtResource("1_5j774")
+
+[node name="debug" type="Label" parent="."]
+offset_left = -20.0
+offset_top = -64.0
+offset_right = 20.0
+offset_bottom = -41.0
+
+[node name="wander_timer" type="Timer" parent="."]
+one_shot = true
+
+[node name="wander_position_timer" type="Timer" parent="."]
+autostart = true
+
+[connection signal="timeout" from="wander_timer" to="." method="_on_wander_timer_timeout"]
+[connection signal="timeout" from="wander_position_timer" to="." method="_on_wander_position_timer_timeout"]

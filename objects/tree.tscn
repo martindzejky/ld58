@@ -1,0 +1,7 @@
+[gd_scene load_steps=3 format=3 uid="uid://b2ct7hik0qq5m"]
+
+[ext_resource type="PackedScene" uid="uid://b8ckrbw0eejay" path="res://objects/resource_object.tscn" id="1_j00qk"]
+[ext_resource type="PackedScene" uid="uid://ciealvuj1s2o1" path="res://objects/wood.tscn" id="2_d8ko4"]
+
+[node name="tree" instance=ExtResource("1_j00qk")]
+resource_item = ExtResource("2_d8ko4")

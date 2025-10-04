@@ -1,0 +1,5 @@
+[gd_scene load_steps=2 format=3 uid="uid://ciealvuj1s2o1"]
+
+[ext_resource type="PackedScene" uid="uid://1vgg8u3lw01v" path="res://objects/resource_item.tscn" id="1_j1gu5"]
+
+[node name="wood" instance=ExtResource("1_j1gu5")]

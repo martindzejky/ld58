@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://bbeleqmxs6bba"]
+
+[ext_resource type="PackedScene" uid="uid://1vgg8u3lw01v" path="res://objects/resource_item.tscn" id="1_j1gu5"]
+
+[node name="fruit" instance=ExtResource("1_j1gu5")]
+modulate = Color(0.94662875, 0.54482484, 0.58651936, 1)
+type = 2

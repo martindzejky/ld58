@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3 uid="uid://c1d2puo3pe4ht"]
+
+[ext_resource type="PackedScene" uid="uid://b8ckrbw0eejay" path="res://objects/resource_object.tscn" id="1_j00qk"]
+[ext_resource type="PackedScene" uid="uid://bbeleqmxs6bba" path="res://objects/fruit.tscn" id="2_d8ko4"]
+
+[node name="berry_bush" instance=ExtResource("1_j00qk")]
+resource_item = ExtResource("2_d8ko4")
+
+[node name="sprite" parent="." index="0"]
+modulate = Color(0.95804304, 0.7366148, 0.7376312, 1)
+position = Vector2(0, -8.000001)
+scale = Vector2(24.309212, 17.32145)

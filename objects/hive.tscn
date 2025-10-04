@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://bwt5l87xappyf"]
+
+[ext_resource type="Script" uid="uid://lrnnti74lwrj" path="res://scripts/hive.gd" id="1_f03at"]
+[ext_resource type="Texture2D" uid="uid://bpijxlegjyije" path="res://sprites/dot.png" id="1_qgnqh"]
+
+[node name="hive" type="Node2D"]
+script = ExtResource("1_f03at")
+
+[node name="sprite" type="Sprite2D" parent="."]
+modulate = Color(0.6, 0.5137255, 0.36078432, 1)
+position = Vector2(0, -59)
+scale = Vector2(101.76852, 121.27303)
+texture = ExtResource("1_qgnqh")

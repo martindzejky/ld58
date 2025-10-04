@@ -1,17 +1,53 @@
-[gd_scene load_steps=3 format=3 uid="uid://dt4nq0nkmjiit"]
+[gd_scene load_steps=8 format=3 uid="uid://dt4nq0nkmjiit"]
 
 [ext_resource type="Script" uid="uid://b7yosgcuyw1we" path="res://scripts/camera.gd" id="1_0xm2m"]
-[ext_resource type="Texture2D" uid="uid://bpijxlegjyije" path="res://sprites/dot.png" id="1_ig7tw"]
+[ext_resource type="PackedScene" uid="uid://bwt5l87xappyf" path="res://objects/hive.tscn" id="2_lquwl"]
+[ext_resource type="PackedScene" uid="uid://b2ct7hik0qq5m" path="res://objects/tree.tscn" id="3_h2yge"]
+[ext_resource type="PackedScene" uid="uid://nd2rfinpsi24" path="res://objects/rock.tscn" id="4_1bvp3"]
+[ext_resource type="PackedScene" uid="uid://bhsbt24u6cyfc" path="res://objects/unit.tscn" id="5_lquwl"]
+[ext_resource type="PackedScene" uid="uid://c1d2puo3pe4ht" path="res://objects/berry_bush.tscn" id="6_7mycd"]
+[ext_resource type="PackedScene" uid="uid://dnvbfp2j6i8tc" path="res://objects/stone.tscn" id="7_272bh"]
 
-[node name="main" type="Node"]
+[node name="main" type="Node2D"]
+y_sort_enabled = true
 
 [node name="camera" type="Camera2D" parent="."]
 script = ExtResource("1_0xm2m")
 
-[node name="hive" type="Node2D" parent="."]
+[node name="hive" parent="." instance=ExtResource("2_lquwl")]
 
-[node name="sprite" type="Sprite2D" parent="hive"]
-modulate = Color(0.6, 0.5137255, 0.36078432, 1)
-position = Vector2(0, -59)
-scale = Vector2(101.76852, 121.27303)
-texture = ExtResource("1_ig7tw")
+[node name="tree" parent="." instance=ExtResource("3_h2yge")]
+position = Vector2(163, 155)
+
+[node name="tree2" parent="." instance=ExtResource("3_h2yge")]
+position = Vector2(184, 183)
+
+[node name="tree3" parent="." instance=ExtResource("3_h2yge")]
+position = Vector2(151, 195)
+
+[node name="rock" parent="." instance=ExtResource("4_1bvp3")]
+position = Vector2(-216, -170)
+
+[node name="rock2" parent="." instance=ExtResource("4_1bvp3")]
+position = Vector2(-226, -236)
+
+[node name="rock3" parent="." instance=ExtResource("4_1bvp3")]
+position = Vector2(-174, -218)
+
+[node name="unit" parent="." instance=ExtResource("5_lquwl")]
+position = Vector2(-122, 83)
+
+[node name="unit2" parent="." instance=ExtResource("5_lquwl")]
+position = Vector2(-185, 86)
+
+[node name="unit3" parent="." instance=ExtResource("5_lquwl")]
+position = Vector2(-151, 133)
+
+[node name="berry_bush" parent="." instance=ExtResource("6_7mycd")]
+position = Vector2(223, -174)
+
+[node name="berry_bush2" parent="." instance=ExtResource("6_7mycd")]
+position = Vector2(209, -214)
+
+[node name="stone" parent="." instance=ExtResource("7_272bh")]
+position = Vector2(-162, -177)

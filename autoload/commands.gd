@@ -1,9 +1,10 @@
 # Commands autoload
-extends Node
+extends Node2D
 
 @export var command_scene: PackedScene
 
-const CLICK_MAX_DRAG_PX = 10.0
+const CLICK_MAX_DRAG_PX = 10
+const DELETE_COMMAND_DISTANCE = 50
 
 var pressing = false
 var press_position = Vector2.ZERO
@@ -17,7 +18,7 @@ func _unhandled_input(event):
     elif not event.pressed and pressing:
       pressing = false
       if event.position.distance_to(press_position) < CLICK_MAX_DRAG_PX:
-        spawn_command()
+        click_command()
 
   # touch
   if event is InputEventScreenTouch:
@@ -27,9 +28,15 @@ func _unhandled_input(event):
     elif not event.pressed and pressing:
       pressing = false
       if event.position.distance_to(press_position) < CLICK_MAX_DRAG_PX:
-        spawn_command()
+        click_command()
 
-func spawn_command():
+func click_command():
+  var position = get_global_mouse_position()
+  for cmd in get_tree().get_nodes_in_group('command'):
+    if cmd.global_position.distance_to(position) < DELETE_COMMAND_DISTANCE:
+      cmd.remove_command()
+      return
+
   var command = command_scene.instantiate()
   get_tree().current_scene.add_child(command)
-  command.position = command.get_global_mouse_position()
+  command.position = position

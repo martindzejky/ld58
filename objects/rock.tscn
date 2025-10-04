@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3 uid="uid://nd2rfinpsi24"]
+
+[ext_resource type="PackedScene" uid="uid://b8ckrbw0eejay" path="res://objects/resource_object.tscn" id="1_d1bt4"]
+[ext_resource type="PackedScene" uid="uid://dnvbfp2j6i8tc" path="res://objects/stone.tscn" id="2_dh84n"]
+
+[node name="rock" instance=ExtResource("1_d1bt4")]
+resource_item = ExtResource("2_dh84n")
+
+[node name="sprite" parent="." index="0"]
+modulate = Color(0.7883094, 0.795625, 0.77645355, 1)
+position = Vector2(0, -11)
+scale = Vector2(18.323973, 21.44695)
