@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://1vgg8u3lw01v"]
+[gd_scene load_steps=5 format=3 uid="uid://1vgg8u3lw01v"]
 
 [ext_resource type="Script" uid="uid://8ck1uk6djtrb" path="res://scripts/resource_item.gd" id="1_ow644"]
 [ext_resource type="Texture2D" uid="uid://bpijxlegjyije" path="res://sprites/dot.png" id="2_45g37"]
+[ext_resource type="Script" uid="uid://ccov1rl0ya212" path="res://scripts/visibility_by_world_radius.gd" id="3_gu4xv"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_45g37"]
 
@@ -19,3 +20,6 @@ collision_layer = 3
 
 [node name="shape" type="CollisionShape2D" parent="job_target"]
 shape = SubResource("CircleShape2D_45g37")
+
+[node name="world_visibility" type="Node2D" parent="."]
+script = ExtResource("3_gu4xv")

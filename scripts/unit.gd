@@ -25,11 +25,17 @@ const MAX_WANDER_POSITION_DISTANCE = 30.0
 
 const MOVE_SPEED = 100.0
 const REACHED_TARGET_DISTANCE = 10.0
+const REACHED_TARGET_COMMAND_DISTANCE = 30.0
 
 @export var attack_cooldown_timer: Timer
+@export var sleep_timer: Timer
 @export var haul_slot: Marker2D
 
 func _process(delta: float) -> void:
+  if not sleep_timer.is_stopped():
+    debug_label.text = 'SLEEPING'
+    return
+
   match state:
     State.IDLE:
       debug_label.text = 'IDLE'
@@ -70,6 +76,7 @@ func moving_to_command_state(delta: float):
     var available = target.get_available_jobs()
 
     if available.size() == 0:
+      sleep_timer.start(randf_range(0.5, 1.0))
       state = State.MOVING_TO_HIVE
       target = Game.hive
       return
@@ -90,6 +97,7 @@ func moving_to_hive_state(delta: float):
       var item = haul_slot.get_child(0)
       Game.hive.collect_resource(item)
     state = State.IDLE
+    sleep_timer.start(randf_range(0.2, 0.5))
 
 func performing_job_state(delta: float):
   if not current_job:
@@ -177,6 +185,9 @@ func move_to_position(delta: float, target_position: Vector2):
   # TODO: simple flocking behavior
   var direction = target_position - global_position
   var distance = direction.length()
+  if state == State.MOVING_TO_COMMAND:
+    if distance < REACHED_TARGET_COMMAND_DISTANCE:
+      return true
   if distance < REACHED_TARGET_DISTANCE:
     return true
   else:

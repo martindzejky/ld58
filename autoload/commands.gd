@@ -37,6 +37,9 @@ func click_command():
       cmd.remove_command()
       return
 
+  if click_position.length() > Game.world_radius:
+    return
+
   var command = command_scene.instantiate()
   get_tree().current_scene.add_child(command)
   command.position = click_position

@@ -15,7 +15,11 @@ func _on_task_completed():
   update_text()
 
 func update_text():
-  text = get_resource_name(resource_type) + ': ' + str(Game.resources[resource_type])
+  text = get_resource_name(resource_type) + ': '
+  if resource_type in Game.resources:
+    text += str(Game.resources[resource_type])
+  else:
+    text += '0'
 
   if Game.tasks.size() == 0:
     return

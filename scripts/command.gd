@@ -10,6 +10,9 @@ class Job: # TODO: should extend RefCounted?
 var jobs: Array[Job] = []
 
 func _on_job_area_area_entered(area: Area2D) -> void:
+  if area.global_position.length() > Game.world_radius:
+    return
+
   var job = Job.new()
   job.target = area.get_parent()
   job.command = self

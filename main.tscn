@@ -1,57 +1,18 @@
-[gd_scene load_steps=9 format=3 uid="uid://dt4nq0nkmjiit"]
+[gd_scene load_steps=11 format=3 uid="uid://dt4nq0nkmjiit"]
 
 [ext_resource type="Script" uid="uid://b7yosgcuyw1we" path="res://scripts/camera.gd" id="1_0xm2m"]
 [ext_resource type="PackedScene" uid="uid://bwt5l87xappyf" path="res://objects/hive.tscn" id="2_lquwl"]
 [ext_resource type="PackedScene" uid="uid://b2ct7hik0qq5m" path="res://objects/tree.tscn" id="3_h2yge"]
+[ext_resource type="Script" uid="uid://djilc6e3job7i" path="res://scripts/world_circle_editor.gd" id="3_kek77"]
 [ext_resource type="PackedScene" uid="uid://nd2rfinpsi24" path="res://objects/rock.tscn" id="4_1bvp3"]
 [ext_resource type="PackedScene" uid="uid://bhsbt24u6cyfc" path="res://objects/unit.tscn" id="5_lquwl"]
 [ext_resource type="PackedScene" uid="uid://c1d2puo3pe4ht" path="res://objects/berry_bush.tscn" id="6_7mycd"]
 [ext_resource type="PackedScene" uid="uid://dnvbfp2j6i8tc" path="res://objects/stone.tscn" id="7_272bh"]
 [ext_resource type="PackedScene" uid="uid://cuwxjbeipna8q" path="res://ui/resources.tscn" id="8_5vw27"]
+[ext_resource type="PackedScene" uid="uid://bbeleqmxs6bba" path="res://objects/fruit.tscn" id="10_4c57u"]
 
 [node name="main" type="Node2D"]
 y_sort_enabled = true
-
-[node name="camera" type="Camera2D" parent="."]
-script = ExtResource("1_0xm2m")
-
-[node name="hive" parent="." instance=ExtResource("2_lquwl")]
-
-[node name="tree" parent="." instance=ExtResource("3_h2yge")]
-position = Vector2(163, 155)
-
-[node name="tree2" parent="." instance=ExtResource("3_h2yge")]
-position = Vector2(184, 183)
-
-[node name="tree3" parent="." instance=ExtResource("3_h2yge")]
-position = Vector2(151, 195)
-
-[node name="rock" parent="." instance=ExtResource("4_1bvp3")]
-position = Vector2(-216, -170)
-
-[node name="rock2" parent="." instance=ExtResource("4_1bvp3")]
-position = Vector2(-226, -236)
-
-[node name="rock3" parent="." instance=ExtResource("4_1bvp3")]
-position = Vector2(-174, -218)
-
-[node name="unit" parent="." instance=ExtResource("5_lquwl")]
-position = Vector2(-122, 83)
-
-[node name="unit2" parent="." instance=ExtResource("5_lquwl")]
-position = Vector2(-185, 86)
-
-[node name="unit3" parent="." instance=ExtResource("5_lquwl")]
-position = Vector2(-151, 133)
-
-[node name="berry_bush" parent="." instance=ExtResource("6_7mycd")]
-position = Vector2(223, -174)
-
-[node name="berry_bush2" parent="." instance=ExtResource("6_7mycd")]
-position = Vector2(209, -214)
-
-[node name="stone" parent="." instance=ExtResource("7_272bh")]
-position = Vector2(-162, -177)
 
 [node name="ui" type="CanvasLayer" parent="."]
 
@@ -61,3 +22,90 @@ anchor_left = 1.0
 anchor_bottom = 0.0
 grow_horizontal = 0
 grow_vertical = 1
+
+[node name="camera" type="Camera2D" parent="."]
+script = ExtResource("1_0xm2m")
+
+[node name="radius_editor" type="Node2D" parent="."]
+script = ExtResource("3_kek77")
+radiuses = Array[float]([177.999, 286.025, 396.36])
+
+[node name="hive" parent="." instance=ExtResource("2_lquwl")]
+
+[node name="tree" parent="." instance=ExtResource("3_h2yge")]
+position = Vector2(98, 67)
+
+[node name="tree2" parent="." instance=ExtResource("3_h2yge")]
+position = Vector2(119, 95)
+
+[node name="tree3" parent="." instance=ExtResource("3_h2yge")]
+position = Vector2(86, 107)
+
+[node name="tree4" parent="." instance=ExtResource("3_h2yge")]
+position = Vector2(318, -99)
+
+[node name="tree5" parent="." instance=ExtResource("3_h2yge")]
+position = Vector2(348, -76)
+
+[node name="tree6" parent="." instance=ExtResource("3_h2yge")]
+position = Vector2(324, -46)
+
+[node name="tree7" parent="." instance=ExtResource("3_h2yge")]
+position = Vector2(-181, 186)
+
+[node name="tree8" parent="." instance=ExtResource("3_h2yge")]
+position = Vector2(-147, 210)
+
+[node name="tree9" parent="." instance=ExtResource("3_h2yge")]
+position = Vector2(-145, 177)
+
+[node name="rock" parent="." instance=ExtResource("4_1bvp3")]
+position = Vector2(-210, -82)
+
+[node name="rock2" parent="." instance=ExtResource("4_1bvp3")]
+position = Vector2(-220, -148)
+
+[node name="rock3" parent="." instance=ExtResource("4_1bvp3")]
+position = Vector2(-168, -130)
+
+[node name="rock4" parent="." instance=ExtResource("4_1bvp3")]
+position = Vector2(-240, -274)
+
+[node name="rock5" parent="." instance=ExtResource("4_1bvp3")]
+position = Vector2(-192, -333)
+
+[node name="rock6" parent="." instance=ExtResource("4_1bvp3")]
+position = Vector2(-157, -333)
+
+[node name="rock7" parent="." instance=ExtResource("4_1bvp3")]
+position = Vector2(-107, -289)
+
+[node name="rock8" parent="." instance=ExtResource("4_1bvp3")]
+position = Vector2(-174, -270)
+
+[node name="rock9" parent="." instance=ExtResource("4_1bvp3")]
+position = Vector2(114, -472)
+
+[node name="unit" parent="." instance=ExtResource("5_lquwl")]
+position = Vector2(-25, 56)
+
+[node name="unit2" parent="." instance=ExtResource("5_lquwl")]
+position = Vector2(17, 61)
+
+[node name="berry_bush" parent="." instance=ExtResource("6_7mycd")]
+position = Vector2(251, -253)
+
+[node name="berry_bush2" parent="." instance=ExtResource("6_7mycd")]
+position = Vector2(237, -293)
+
+[node name="stone" parent="." instance=ExtResource("7_272bh")]
+position = Vector2(-173, -93)
+
+[node name="stone2" parent="." instance=ExtResource("7_272bh")]
+position = Vector2(-128, -154)
+
+[node name="stone3" parent="." instance=ExtResource("7_272bh")]
+position = Vector2(-134, -172)
+
+[node name="fruit" parent="." instance=ExtResource("10_4c57u")]
+position = Vector2(276, -210)

@@ -3,12 +3,13 @@
 [ext_resource type="Texture2D" uid="uid://bpijxlegjyije" path="res://sprites/dot.png" id="1_5j774"]
 [ext_resource type="Script" uid="uid://bm1hnf8p0nmkk" path="res://scripts/unit.gd" id="1_dberb"]
 
-[node name="unit" type="Node2D" node_paths=PackedStringArray("debug_label", "wander_timer", "wander_position_timer", "attack_cooldown_timer", "haul_slot")]
+[node name="unit" type="Node2D" node_paths=PackedStringArray("debug_label", "wander_timer", "wander_position_timer", "attack_cooldown_timer", "sleep_timer", "haul_slot")]
 script = ExtResource("1_dberb")
 debug_label = NodePath("debug")
 wander_timer = NodePath("wander_timer")
 wander_position_timer = NodePath("wander_position_timer")
 attack_cooldown_timer = NodePath("attack_cooldown_timer")
+sleep_timer = NodePath("sleep_timer")
 haul_slot = NodePath("haul_slot")
 
 [node name="sprite" type="Sprite2D" parent="."]
@@ -30,6 +31,9 @@ one_shot = true
 autostart = true
 
 [node name="attack_cooldown_timer" type="Timer" parent="."]
+one_shot = true
+
+[node name="sleep_timer" type="Timer" parent="."]
 one_shot = true
 
 [node name="haul_slot" type="Marker2D" parent="."]
