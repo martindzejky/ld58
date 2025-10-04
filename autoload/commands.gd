@@ -31,12 +31,12 @@ func _unhandled_input(event):
         click_command()
 
 func click_command():
-  var position = get_global_mouse_position()
+  var click_position = get_global_mouse_position()
   for cmd in get_tree().get_nodes_in_group('command'):
-    if cmd.global_position.distance_to(position) < DELETE_COMMAND_DISTANCE:
+    if cmd.global_position.distance_to(click_position) < DELETE_COMMAND_DISTANCE:
       cmd.remove_command()
       return
 
   var command = command_scene.instantiate()
   get_tree().current_scene.add_child(command)
-  command.position = position
+  command.position = click_position

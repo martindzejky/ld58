@@ -4,11 +4,14 @@ enum State {
   IDLE, # idle is a decision point
   WANDERING,
   MOVING_TO_COMMAND,
-  MOVING_TO_HIVE
+  MOVING_TO_HIVE,
+  PERFORMING_JOB
 }
 
 var state: State = State.IDLE
 var target: Node2D
+var current_job: Command.Job
+
 @export var debug_label: Label
 
 @export var wander_timer: Timer
@@ -22,6 +25,8 @@ const MAX_WANDER_POSITION_DISTANCE = 30.0
 
 const MOVE_SPEED = 100.0
 const REACHED_TARGET_DISTANCE = 10.0
+
+@export var attack_cooldown_timer: Timer
 
 func _process(delta: float) -> void:
   match state:
@@ -37,6 +42,9 @@ func _process(delta: float) -> void:
     State.MOVING_TO_HIVE:
       debug_label.text = 'MOVING_TO_HIVE'
       moving_to_hive_state(delta)
+    State.PERFORMING_JOB:
+      debug_label.text = 'PERFORMING_JOB'
+      performing_job_state(delta)
 
 func idle_state():
   var available_commands = get_tree().get_nodes_in_group('command')
@@ -51,14 +59,24 @@ func wandering_state(delta: float):
   move_to_position(delta, wander_position)
 
 func moving_to_command_state(delta: float):
-  if not target:
+  if not target or not target is Command:
     state = State.IDLE
     return
 
   var reached = move_to_target(delta)
   if reached:
-    state = State.MOVING_TO_HIVE
-    target = Game.hive
+    var available = target.jobs.filter(func(job: Command.Job): return job.worker == null and is_instance_valid(job.target))
+
+    if available.size() == 0:
+      state = State.MOVING_TO_HIVE
+      target = Game.hive
+      return
+
+    current_job = available.pick_random()
+    current_job.worker = self
+    current_job.started.emit()
+    current_job.cancelled.connect(_on_job_cancelled)
+    state = State.PERFORMING_JOB
 
 func moving_to_hive_state(delta: float):
   if not target:
@@ -69,14 +87,50 @@ func moving_to_hive_state(delta: float):
   if reached:
     state = State.IDLE
 
+func performing_job_state(delta: float):
+  if not current_job:
+    state = State.IDLE
+    return
+
+  if not current_job.target:
+    current_job.completed.emit()
+    # find a new job from the same command
+    if current_job.command:
+      var available = current_job.command.jobs.filter(func(job: Command.Job): return job.worker == null and is_instance_valid(job.target))
+      if available.size() > 0:
+        current_job = available.pick_random()
+        current_job.worker = self
+        current_job.started.emit()
+        current_job.cancelled.connect(_on_job_cancelled)
+      else:
+        current_job = null
+        state = State.MOVING_TO_HIVE
+        target = Game.hive
+        return
+    else:
+      current_job = null
+      state = State.MOVING_TO_HIVE
+      target = Game.hive
+      return
+
+  var reached = move_to_position(delta, current_job.target.global_position)
+  if not reached:
+    # keep moving
+    return
+
+  if attack_cooldown_timer.is_stopped():
+    attack_cooldown_timer.start()
+    if current_job.target and current_job.target.has_method('take_damage'):
+      current_job.target.take_damage(1) # TODO: force will be upgradable
+
 func _on_wander_timer_timeout():
   state = State.IDLE
 
 func move_to_target(delta: float):
   return move_to_position(delta, target.global_position)
 
-func move_to_position(delta: float, position: Vector2):
-  var direction = position - global_position
+func move_to_position(delta: float, target_position: Vector2):
+  var direction = target_position - global_position
   var distance = direction.length()
   if distance < REACHED_TARGET_DISTANCE:
     return true
@@ -86,3 +140,8 @@ func move_to_position(delta: float, position: Vector2):
 
 func _on_wander_position_timer_timeout() -> void:
   wander_position = global_position + Vector2.UP.rotated(randf_range(0, 2 * PI)) * randf_range(0, MAX_WANDER_POSITION_DISTANCE)
+
+func _on_job_cancelled():
+  current_job = null
+  state = State.MOVING_TO_HIVE
+  target = Game.hive

@@ -24,10 +24,9 @@ func _on_job_area_area_entered(area: Area2D) -> void:
 func _on_job_area_area_exited(area: Area2D) -> void:
   var job_index = jobs.find_custom(func(job: Job): return job.target == area.get_parent())
   if job_index != -1:
-    var job = jobs[job_index]
-    job.cancelled.emit()
     jobs.remove_at(job_index)
-    print('Cancelled job for ', job.target.name)
 
 func remove_command():
   queue_free()
+  for job in jobs:
+    job.cancelled.emit()
