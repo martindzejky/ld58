@@ -1,0 +1,15 @@
+[gd_scene load_steps=2 format=3 uid="uid://b2ddk12l52hbt"]
+
+[ext_resource type="Texture2D" uid="uid://bpijxlegjyije" path="res://sprites/dot.png" id="1_6nnwp"]
+
+[node name="command" type="Node2D"]
+
+[node name="sprite" type="Sprite2D" parent="."]
+scale = Vector2(27.829365, 17.551414)
+texture = ExtResource("1_6nnwp")
+
+[node name="sprite2" type="Sprite2D" parent="sprite"]
+self_modulate = Color(0.81, 0.92399997, 1, 1)
+position = Vector2(0, -1.4243865)
+scale = Vector2(0.40832365, 2.820195)
+texture = ExtResource("1_6nnwp")
