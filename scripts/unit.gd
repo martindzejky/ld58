@@ -61,7 +61,8 @@ func wandering_state(delta: float):
 
 func moving_to_command_state(delta: float):
   if not target or not target is Command:
-    state = State.IDLE
+    state = State.MOVING_TO_HIVE
+    target = Game.hive
     return
 
   var reached = move_to_target(delta)
@@ -81,8 +82,7 @@ func moving_to_command_state(delta: float):
 
 func moving_to_hive_state(delta: float):
   if not target:
-    state = State.IDLE
-    return
+    target = Game.hive
 
   var reached = move_to_target(delta)
   if reached:
@@ -93,7 +93,8 @@ func moving_to_hive_state(delta: float):
 
 func performing_job_state(delta: float):
   if not current_job:
-    state = State.IDLE
+    state = State.MOVING_TO_HIVE
+    target = Game.hive
     return
 
   if not current_job.target:
