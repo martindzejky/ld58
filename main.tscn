@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://dt4nq0nkmjiit"]
+[gd_scene load_steps=12 format=3 uid="uid://dt4nq0nkmjiit"]
 
 [ext_resource type="Script" uid="uid://b7yosgcuyw1we" path="res://scripts/camera.gd" id="1_0xm2m"]
 [ext_resource type="PackedScene" uid="uid://bwt5l87xappyf" path="res://objects/hive.tscn" id="2_lquwl"]
@@ -10,6 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://dnvbfp2j6i8tc" path="res://objects/stone.tscn" id="7_272bh"]
 [ext_resource type="PackedScene" uid="uid://cuwxjbeipna8q" path="res://ui/resources.tscn" id="8_5vw27"]
 [ext_resource type="PackedScene" uid="uid://bbeleqmxs6bba" path="res://objects/fruit.tscn" id="10_4c57u"]
+[ext_resource type="Script" uid="uid://pivgdd3uunhl" path="res://scripts/world_radius_mask.gd" id="11_k3r2a"]
 
 [node name="main" type="Node2D"]
 y_sort_enabled = true
@@ -30,16 +31,23 @@ script = ExtResource("1_0xm2m")
 script = ExtResource("3_kek77")
 radiuses = Array[float]([177.999, 286.025, 396.36])
 
+[node name="world_radius_mask" type="Polygon2D" parent="."]
+z_index = -1
+color = Color(0, 0, 0, 1)
+invert_enabled = true
+invert_border = 1024.0
+script = ExtResource("11_k3r2a")
+
 [node name="hive" parent="." instance=ExtResource("2_lquwl")]
 
 [node name="tree" parent="." instance=ExtResource("3_h2yge")]
-position = Vector2(98, 67)
+position = Vector2(106, -130)
 
 [node name="tree2" parent="." instance=ExtResource("3_h2yge")]
-position = Vector2(119, 95)
+position = Vector2(127, -102)
 
 [node name="tree3" parent="." instance=ExtResource("3_h2yge")]
-position = Vector2(86, 107)
+position = Vector2(94, -90)
 
 [node name="tree4" parent="." instance=ExtResource("3_h2yge")]
 position = Vector2(318, -99)
