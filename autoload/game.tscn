@@ -5,7 +5,7 @@
 
 [sub_resource type="Resource" id="Resource_j5esd"]
 script = ExtResource("2_j5esd")
-wood = 4
+wood = 3
 metadata/_custom_type_script = "uid://bibkfwydm1vt5"
 
 [sub_resource type="Resource" id="Resource_pjkha"]

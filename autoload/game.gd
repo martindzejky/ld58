@@ -9,7 +9,7 @@ signal resource_changed(type)
 var hive: Hive
 
 @export var tasks: Array[Task] = []
-signal task_changed
+signal task_completed
 
 # world radius only ever increases
 signal world_radius_changed
@@ -28,3 +28,23 @@ func collect_resource(resource: ResourceItem):
   else:
     resources[type] = resource.amount
     new_resource.emit(type)
+  update_task_completion()
+
+func update_task_completion():
+  if tasks.size() == 0:
+    return
+
+  var current_task = tasks[0]
+  if not check_resource(ResourceItem.Type.WOOD, current_task.wood):
+    return
+  if not check_resource(ResourceItem.Type.STONE, current_task.stone):
+    return
+  if not check_resource(ResourceItem.Type.FRUIT, current_task.fruit):
+    return
+  tasks.pop_front()
+  task_completed.emit()
+
+func check_resource(type: ResourceItem.Type, required: int):
+  if required <= 0: return true
+  if type not in resources: return false
+  return resources[type] >= required

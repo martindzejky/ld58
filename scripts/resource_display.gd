@@ -4,13 +4,14 @@ var resource_type: ResourceItem.Type
 
 func _ready():
   Game.resource_changed.connect(_on_resource_changed)
-  Game.task_changed.connect(_on_task_changed)
+  Game.task_completed.connect(_on_task_completed)
+  update_text()
 
 func _on_resource_changed(type: ResourceItem.Type):
   if type == resource_type:
     update_text()
 
-func _on_task_changed():
+func _on_task_completed():
   update_text()
 
 func update_text():
