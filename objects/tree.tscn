@@ -5,3 +5,4 @@
 
 [node name="tree" instance=ExtResource("1_j00qk")]
 resource_item = ExtResource("2_d8ko4")
+health = 4

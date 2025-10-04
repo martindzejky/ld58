@@ -66,7 +66,7 @@ func moving_to_command_state(delta: float):
 
   var reached = move_to_target(delta)
   if reached:
-    var available = target.jobs.filter(func(job: Command.Job): return job.worker == null and is_instance_valid(job.target))
+    var available = target.get_available_jobs()
 
     if available.size() == 0:
       state = State.MOVING_TO_HIVE
@@ -74,9 +74,9 @@ func moving_to_command_state(delta: float):
       return
 
     current_job = available.pick_random()
-    current_job.worker = self
-    current_job.started.emit()
+    current_job.workers.append(self)
     current_job.cancelled.connect(_on_job_cancelled)
+    current_job.completed.connect(_on_job_completed)
     state = State.PERFORMING_JOB
 
 func moving_to_hive_state(delta: float):
@@ -97,16 +97,18 @@ func performing_job_state(delta: float):
     return
 
   if not current_job.target:
+    current_job.cancelled.disconnect(_on_job_cancelled)
+    current_job.completed.disconnect(_on_job_completed)
     current_job.completed.emit()
     # find a new job from the same command
     # TODO: there's an edge case: if we just destroyed a resource which spawned resource items, these will not have jobs registered yet
     if current_job.command:
-      var available = current_job.command.jobs.filter(func(job: Command.Job): return job.worker == null and is_instance_valid(job.target))
+      var available = current_job.command.get_available_jobs()
       if available.size() > 0:
         current_job = available.pick_random()
-        current_job.worker = self
-        current_job.started.emit()
+        current_job.workers.append(self)
         current_job.cancelled.connect(_on_job_cancelled)
+        current_job.completed.connect(_on_job_completed)
       else:
         current_job = null
         state = State.MOVING_TO_HIVE
@@ -138,19 +140,31 @@ func interact_with_job_target():
   if current_job.target is ResourceObject:
     if attack_cooldown_timer.is_stopped():
       attack_cooldown_timer.start()
-      current_job.target.take_damage(1)
+      current_job.target.take_damage(1) # TODO: this will be upgradable
     return
 
-  if current_job.target is ResourceItem and not is_carrying_item():
+  if current_job.target is ResourceItem:
+    if is_carrying_item():
+      state = State.MOVING_TO_HIVE
+      target = Game.hive
+      return
+
     current_job.target.pickup()
     current_job.target.reparent(haul_slot)
     current_job.target.position = Vector2.ZERO
     # complete the job immediately and remove it from command
+    current_job.cancelled.disconnect(_on_job_cancelled)
+    current_job.completed.disconnect(_on_job_completed)
     current_job.completed.emit()
     current_job = null
     target = Game.hive
     state = State.MOVING_TO_HIVE
     return
+
+  # fallback
+  current_job = null
+  state = State.MOVING_TO_HIVE
+  target = Game.hive
 
 func _on_wander_timer_timeout():
   state = State.IDLE
@@ -172,6 +186,37 @@ func _on_wander_position_timer_timeout() -> void:
   wander_position = global_position + Vector2.UP.rotated(randf_range(0, 2 * PI)) * randf_range(0, MAX_WANDER_POSITION_DISTANCE)
 
 func _on_job_cancelled():
+  if not current_job:
+    return
+
+  current_job.cancelled.disconnect(_on_job_cancelled)
+  current_job.completed.disconnect(_on_job_completed)
   current_job = null
   state = State.MOVING_TO_HIVE
   target = Game.hive
+
+func _on_job_completed():
+  if not current_job:
+    return
+
+  current_job.cancelled.disconnect(_on_job_cancelled)
+  current_job.completed.disconnect(_on_job_completed)
+
+  # pick a new job from the same command, someone else completed this job
+  if current_job.command:
+    var available = current_job.command.get_available_jobs()
+    if available.size() > 0:
+      current_job = available.pick_random()
+      current_job.workers.append(self)
+      current_job.cancelled.connect(_on_job_cancelled)
+      current_job.completed.connect(_on_job_completed)
+    else:
+      current_job = null
+      state = State.MOVING_TO_HIVE
+      target = Game.hive
+      return
+  else:
+    current_job = null
+    state = State.MOVING_TO_HIVE
+    target = Game.hive
+    return

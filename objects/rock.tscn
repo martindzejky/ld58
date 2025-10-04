@@ -5,6 +5,8 @@
 
 [node name="rock" instance=ExtResource("1_d1bt4")]
 resource_item = ExtResource("2_dh84n")
+amount_max = 2
+health = 6
 
 [node name="sprite" parent="." index="0"]
 modulate = Color(0.7883094, 0.795625, 0.77645355, 1)
