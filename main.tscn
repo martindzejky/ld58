@@ -21,7 +21,15 @@ shader_parameter/world_radius = 100.0
 shader_parameter/camera_pos = Vector2(0, 0)
 shader_parameter/camera_zoom = Vector2(1, 1)
 shader_parameter/viewport_size = Vector2(1024, 768)
-shader_parameter/feather = 0.0
+shader_parameter/wobble_amp1 = 6.0
+shader_parameter/wobble_freq1 = 8.0
+shader_parameter/wobble_speed1 = 0.6
+shader_parameter/wobble_amp2 = 3.0
+shader_parameter/wobble_freq2 = 15.0
+shader_parameter/wobble_speed2 = -0.35
+shader_parameter/wobble_amp3 = 2.0
+shader_parameter/wobble_freq3 = 27.0
+shader_parameter/wobble_speed3 = 0.9
 
 [node name="main" type="Node2D"]
 y_sort_enabled = true
