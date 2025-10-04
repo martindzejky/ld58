@@ -43,7 +43,6 @@ script = ExtResource("3_kek77")
 radiuses = Array[float]([177.999, 286.025, 396.36])
 
 [node name="world_radius_mask" type="Polygon2D" parent="."]
-visible = false
 z_index = -1
 color = Color(0, 0, 0, 1)
 invert_enabled = true
