@@ -4,7 +4,7 @@
 [ext_resource type="Script" uid="uid://bovhlu5v42t26" path="res://scripts/command.gd" id="1_k2bee"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_6nnwp"]
-radius = 48.010414
+radius = 76.02631
 
 [node name="command" type="Node2D" groups=["command"]]
 script = ExtResource("1_k2bee")

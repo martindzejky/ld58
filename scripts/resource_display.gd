@@ -4,10 +4,33 @@ var resource_type: ResourceItem.Type
 
 func _ready():
   Game.resource_changed.connect(_on_resource_changed)
+  Game.task_changed.connect(_on_task_changed)
 
 func _on_resource_changed(type: ResourceItem.Type):
   if type == resource_type:
-    text = get_resource_name(type) + ': ' + str(Game.resources[type])
+    update_text()
+
+func _on_task_changed():
+  update_text()
+
+func update_text():
+  text = get_resource_name(resource_type) + ': ' + str(Game.resources[resource_type])
+
+  if Game.tasks.size() == 0:
+    return
+
+  var current_task = Game.tasks[0]
+  match resource_type:
+    ResourceItem.Type.WOOD:
+      if current_task.wood > 0:
+        text += ' / ' + str(current_task.wood)
+    ResourceItem.Type.STONE:
+      if current_task.stone > 0:
+        text += ' / ' + str(current_task.stone)
+    ResourceItem.Type.FRUIT:
+      if current_task.fruit > 0:
+        text += ' / ' + str(current_task.fruit)
+
 
 func get_resource_name(type: ResourceItem.Type):
   match type:

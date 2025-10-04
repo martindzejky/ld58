@@ -1,4 +1,5 @@
 class_name Task extends Resource
 
-# type -> amount
-@export var required_resources = {}
+@export var wood = 0
+@export var stone = 0
+@export var fruit = 0

@@ -9,6 +9,7 @@ signal resource_changed(type)
 var hive: Hive
 
 @export var tasks: Array[Task] = []
+signal task_changed
 
 # world radius only ever increases
 signal world_radius_changed
