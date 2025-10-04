@@ -159,6 +159,7 @@ func move_to_target(delta: float):
   return move_to_position(delta, target.global_position)
 
 func move_to_position(delta: float, target_position: Vector2):
+  # TODO: simple flocking behavior
   var direction = target_position - global_position
   var distance = direction.length()
   if distance < REACHED_TARGET_DISTANCE:
