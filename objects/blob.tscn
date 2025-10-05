@@ -1,0 +1,15 @@
+[gd_scene load_steps=4 format=3 uid="uid://kk4bhp5ubqjc"]
+
+[ext_resource type="Texture2D" uid="uid://vnvg7hgnxjw7" path="res://sprites/blob.png" id="1_qfjv7"]
+[ext_resource type="Script" uid="uid://dlyrcahwsrxyt" path="res://scripts/random_sprite.gd" id="2_4sqfo"]
+[ext_resource type="Script" uid="uid://ccov1rl0ya212" path="res://scripts/visibility_by_world_radius.gd" id="3_s8qbm"]
+
+[node name="blob" type="Sprite2D"]
+z_index = -2
+texture = ExtResource("1_qfjv7")
+hframes = 5
+script = ExtResource("2_4sqfo")
+
+[node name="world_visibility" type="Node2D" parent="."]
+script = ExtResource("3_s8qbm")
+metadata/_custom_type_script = "uid://ccov1rl0ya212"

@@ -1,21 +1,58 @@
-[gd_scene load_steps=5 format=3 uid="uid://b8ckrbw0eejay"]
+[gd_scene load_steps=7 format=3 uid="uid://b8ckrbw0eejay"]
 
 [ext_resource type="Script" uid="uid://dhpfm3pyklppq" path="res://scripts/resource_object.gd" id="1_1b3pf"]
-[ext_resource type="Texture2D" uid="uid://bpijxlegjyije" path="res://sprites/dot.png" id="2_bk1pl"]
+[ext_resource type="Script" uid="uid://dlyrcahwsrxyt" path="res://scripts/random_sprite.gd" id="2_hmn2e"]
 [ext_resource type="Script" uid="uid://ccov1rl0ya212" path="res://scripts/visibility_by_world_radius.gd" id="3_hmn2e"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_bk1pl"]
 
-[node name="resource" type="Node2D"]
+[sub_resource type="Animation" id="Animation_hmn2e"]
+resource_name = "squish"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("sprite_parent:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.05854073, 0.13760866, 0.209074, 0.26659742),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0.74, 1.295), Vector2(1.196, 0.958), Vector2(0.948, 1.154), Vector2(1.101, 0.945), Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_reset_res"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("sprite_parent:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_0qxx3"]
+_data = {
+&"RESET": SubResource("Animation_reset_res"),
+&"squish": SubResource("Animation_hmn2e")
+}
+
+[node name="resource" type="Node2D" node_paths=PackedStringArray("animation_player")]
 script = ExtResource("1_1b3pf")
 amount_min = 1
 amount_max = 1
+animation_player = NodePath("animation")
 
-[node name="sprite" type="Sprite2D" parent="."]
-modulate = Color(0.77922165, 0.9310564, 0.7204669, 1)
-position = Vector2(0, -15)
-scale = Vector2(12.44859, 29.978836)
-texture = ExtResource("2_bk1pl")
+[node name="sprite_parent" type="Node2D" parent="."]
+
+[node name="sprite" type="Sprite2D" parent="sprite_parent"]
+script = ExtResource("2_hmn2e")
 
 [node name="job_target" type="Area2D" parent="."]
 collision_layer = 3
@@ -25,3 +62,8 @@ shape = SubResource("CircleShape2D_bk1pl")
 
 [node name="world_visibility" type="Node2D" parent="."]
 script = ExtResource("3_hmn2e")
+
+[node name="animation" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_0qxx3")
+}

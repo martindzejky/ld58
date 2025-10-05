@@ -1,7 +1,10 @@
-[gd_scene load_steps=2 format=3 uid="uid://dnvbfp2j6i8tc"]
+[gd_scene load_steps=3 format=3 uid="uid://dnvbfp2j6i8tc"]
 
 [ext_resource type="PackedScene" uid="uid://1vgg8u3lw01v" path="res://objects/resource_item.tscn" id="1_5ekgo"]
+[ext_resource type="Texture2D" uid="uid://463hj4f0qx03" path="res://sprites/stone.png" id="2_1hiip"]
 
 [node name="stone" instance=ExtResource("1_5ekgo")]
-modulate = Color(0.8169888, 0.81081945, 0.82000005, 1)
 type = 1
+
+[node name="sprite" parent="." index="0"]
+texture = ExtResource("2_1hiip")

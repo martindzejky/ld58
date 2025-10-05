@@ -1,5 +1,7 @@
 class_name Command extends Node2D
 
+@export var animation_player: AnimationPlayer
+
 class Job: # TODO: should extend RefCounted?
   var target: Node2D
   var workers: Array[Node2D] = []
@@ -26,7 +28,7 @@ func _on_job_area_area_exited(area: Area2D) -> void:
     jobs.remove_at(job_index)
 
 func remove_command():
-  queue_free()
+  animation_player.play('delete')
   for job in jobs:
     job.cancelled.emit()
 

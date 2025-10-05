@@ -28,12 +28,17 @@ window/size/viewport_height=700
 window/size/resizable=false
 window/handheld/orientation=1
 
+[gui]
+
+theme/custom_font="uid://do57yg05iwy5c"
+
 [layer_names]
 
 2d_physics/layer_2="job_target"
 
 [rendering]
 
+textures/canvas_textures/default_texture_filter=0
 renderer/rendering_method="gl_compatibility"
 renderer/rendering_method.mobile="gl_compatibility"
 textures/vram_compression/import_etc2_astc=true

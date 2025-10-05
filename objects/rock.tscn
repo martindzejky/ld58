@@ -1,14 +1,19 @@
-[gd_scene load_steps=3 format=3 uid="uid://nd2rfinpsi24"]
+[gd_scene load_steps=5 format=3 uid="uid://nd2rfinpsi24"]
 
 [ext_resource type="PackedScene" uid="uid://b8ckrbw0eejay" path="res://objects/resource_object.tscn" id="1_d1bt4"]
 [ext_resource type="PackedScene" uid="uid://dnvbfp2j6i8tc" path="res://objects/stone.tscn" id="2_dh84n"]
+[ext_resource type="Texture2D" uid="uid://b1va6s38pm0og" path="res://sprites/rock.png" id="3_lc31t"]
+[ext_resource type="PackedScene" uid="uid://cbqmkhvtbk1d2" path="res://objects/shadow.tscn" id="4_yld6o"]
 
 [node name="rock" instance=ExtResource("1_d1bt4")]
 resource_item = ExtResource("2_dh84n")
 amount_max = 2
 health = 6
 
-[node name="sprite" parent="." index="0"]
-modulate = Color(0.7883094, 0.795625, 0.77645355, 1)
-position = Vector2(0, -11)
-scale = Vector2(18.323973, 21.44695)
+[node name="sprite" parent="sprite_parent" index="0"]
+position = Vector2(3, -44)
+texture = ExtResource("3_lc31t")
+hframes = 2
+
+[node name="shadow" parent="." index="3" instance=ExtResource("4_yld6o")]
+scale = Vector2(0.5907909, 0.5907909)

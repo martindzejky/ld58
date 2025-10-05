@@ -4,11 +4,13 @@ class_name ResourceObject extends Node2D
 @export var amount_min: int
 @export var amount_max: int
 @export var health = 2 # units deal 1 damage per hit by default
+@export var animation_player: AnimationPlayer
 
 const RESOURCE_ITEM_MIN_SPAWN_DISTANCE = 4.0
 const RESOURCE_ITEM_MAX_SPAWN_DISTANCE = 12.0
 
 func take_damage(amount: int):
+  animation_player.play('squish')
   health -= amount
   if health <= 0:
     queue_free()

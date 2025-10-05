@@ -41,5 +41,5 @@ func click_command():
     return
 
   var command = command_scene.instantiate()
-  get_tree().current_scene.add_child(command)
+  get_tree().call_group('world', 'add_child', command)
   command.position = click_position

@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://dt4nq0nkmjiit"]
+[gd_scene load_steps=16 format=3 uid="uid://dt4nq0nkmjiit"]
 
 [ext_resource type="Script" uid="uid://b7yosgcuyw1we" path="res://scripts/camera.gd" id="1_0xm2m"]
 [ext_resource type="PackedScene" uid="uid://bwt5l87xappyf" path="res://objects/hive.tscn" id="2_lquwl"]
@@ -10,7 +10,8 @@
 [ext_resource type="PackedScene" uid="uid://dnvbfp2j6i8tc" path="res://objects/stone.tscn" id="7_272bh"]
 [ext_resource type="PackedScene" uid="uid://cuwxjbeipna8q" path="res://ui/resources.tscn" id="8_5vw27"]
 [ext_resource type="PackedScene" uid="uid://bbeleqmxs6bba" path="res://objects/fruit.tscn" id="10_4c57u"]
-[ext_resource type="Script" uid="uid://pivgdd3uunhl" path="res://scripts/world_radius_mask.gd" id="11_k3r2a"]
+[ext_resource type="PackedScene" uid="uid://kk4bhp5ubqjc" path="res://objects/blob.tscn" id="10_ycdy4"]
+[ext_resource type="PackedScene" uid="uid://d2qswu3whqv2w" path="res://objects/grass.tscn" id="11_w48qg"]
 [ext_resource type="Shader" uid="uid://bst7qku8ssd1" path="res://shaders/world_mask.gdshader" id="12_maskshader"]
 [ext_resource type="Script" uid="uid://3n3j7psjkd0v" path="res://scripts/world_mask_controller.gd" id="13_maskscript"]
 
@@ -31,10 +32,224 @@ shader_parameter/wobble_amp3 = 2.0
 shader_parameter/wobble_freq3 = 27.0
 shader_parameter/wobble_speed3 = 0.9
 
-[node name="main" type="Node2D"]
+[node name="main" type="Node"]
+
+[node name="world_mask" type="CanvasLayer" parent="."]
+script = ExtResource("13_maskscript")
+
+[node name="color_rect" type="ColorRect" parent="world_mask"]
+z_index = 100
+material = SubResource("ShaderMat_world_mask")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="world_layer" type="CanvasLayer" parent="."]
+layer = 2
+follow_viewport_enabled = true
+
+[node name="world_sort" type="Node2D" parent="world_layer" groups=["world"]]
 y_sort_enabled = true
 
+[node name="hive" parent="world_layer/world_sort" instance=ExtResource("2_lquwl")]
+
+[node name="tree" parent="world_layer/world_sort" instance=ExtResource("3_h2yge")]
+position = Vector2(106, -130)
+
+[node name="tree2" parent="world_layer/world_sort" instance=ExtResource("3_h2yge")]
+position = Vector2(127, -102)
+
+[node name="tree3" parent="world_layer/world_sort" instance=ExtResource("3_h2yge")]
+position = Vector2(94, -90)
+
+[node name="tree4" parent="world_layer/world_sort" instance=ExtResource("3_h2yge")]
+position = Vector2(318, -99)
+
+[node name="tree5" parent="world_layer/world_sort" instance=ExtResource("3_h2yge")]
+position = Vector2(348, -76)
+
+[node name="tree6" parent="world_layer/world_sort" instance=ExtResource("3_h2yge")]
+position = Vector2(324, -46)
+
+[node name="tree7" parent="world_layer/world_sort" instance=ExtResource("3_h2yge")]
+position = Vector2(-181, 186)
+
+[node name="tree8" parent="world_layer/world_sort" instance=ExtResource("3_h2yge")]
+position = Vector2(-147, 210)
+
+[node name="tree9" parent="world_layer/world_sort" instance=ExtResource("3_h2yge")]
+position = Vector2(-145, 177)
+
+[node name="rock" parent="world_layer/world_sort" instance=ExtResource("4_1bvp3")]
+position = Vector2(-210, -82)
+
+[node name="rock2" parent="world_layer/world_sort" instance=ExtResource("4_1bvp3")]
+position = Vector2(-220, -148)
+
+[node name="rock3" parent="world_layer/world_sort" instance=ExtResource("4_1bvp3")]
+position = Vector2(-168, -130)
+
+[node name="rock4" parent="world_layer/world_sort" instance=ExtResource("4_1bvp3")]
+position = Vector2(-240, -274)
+
+[node name="rock5" parent="world_layer/world_sort" instance=ExtResource("4_1bvp3")]
+position = Vector2(-192, -333)
+
+[node name="rock6" parent="world_layer/world_sort" instance=ExtResource("4_1bvp3")]
+position = Vector2(-157, -333)
+
+[node name="rock7" parent="world_layer/world_sort" instance=ExtResource("4_1bvp3")]
+position = Vector2(-107, -289)
+
+[node name="rock8" parent="world_layer/world_sort" instance=ExtResource("4_1bvp3")]
+position = Vector2(-174, -270)
+
+[node name="rock9" parent="world_layer/world_sort" instance=ExtResource("4_1bvp3")]
+position = Vector2(114, -472)
+
+[node name="unit" parent="world_layer/world_sort" instance=ExtResource("5_lquwl")]
+position = Vector2(-25, 56)
+
+[node name="unit2" parent="world_layer/world_sort" instance=ExtResource("5_lquwl")]
+position = Vector2(17, 61)
+
+[node name="berry_bush" parent="world_layer/world_sort" instance=ExtResource("6_7mycd")]
+position = Vector2(251, -253)
+
+[node name="berry_bush2" parent="world_layer/world_sort" instance=ExtResource("6_7mycd")]
+position = Vector2(237, -293)
+
+[node name="stone" parent="world_layer/world_sort" instance=ExtResource("7_272bh")]
+position = Vector2(-173, -93)
+
+[node name="stone2" parent="world_layer/world_sort" instance=ExtResource("7_272bh")]
+position = Vector2(-128, -154)
+
+[node name="stone3" parent="world_layer/world_sort" instance=ExtResource("7_272bh")]
+position = Vector2(-134, -172)
+
+[node name="fruit" parent="world_layer/world_sort" instance=ExtResource("10_4c57u")]
+position = Vector2(276, -210)
+
+[node name="blob" parent="world_layer/world_sort" instance=ExtResource("10_ycdy4")]
+position = Vector2(98, 61)
+
+[node name="blob2" parent="world_layer/world_sort" instance=ExtResource("10_ycdy4")]
+position = Vector2(-224, 24)
+
+[node name="blob3" parent="world_layer/world_sort" instance=ExtResource("10_ycdy4")]
+position = Vector2(-251, -29)
+
+[node name="blob4" parent="world_layer/world_sort" instance=ExtResource("10_ycdy4")]
+position = Vector2(6, -290)
+
+[node name="blob5" parent="world_layer/world_sort" instance=ExtResource("10_ycdy4")]
+position = Vector2(91, -334)
+
+[node name="blob6" parent="world_layer/world_sort" instance=ExtResource("10_ycdy4")]
+position = Vector2(407, -361)
+
+[node name="blob7" parent="world_layer/world_sort" instance=ExtResource("10_ycdy4")]
+position = Vector2(475, -137)
+
+[node name="blob8" parent="world_layer/world_sort" instance=ExtResource("10_ycdy4")]
+position = Vector2(428, -74)
+
+[node name="blob9" parent="world_layer/world_sort" instance=ExtResource("10_ycdy4")]
+position = Vector2(356, 206)
+
+[node name="blob10" parent="world_layer/world_sort" instance=ExtResource("10_ycdy4")]
+position = Vector2(363, 302)
+
+[node name="blob11" parent="world_layer/world_sort" instance=ExtResource("10_ycdy4")]
+position = Vector2(156, 269)
+
+[node name="blob12" parent="world_layer/world_sort" instance=ExtResource("10_ycdy4")]
+position = Vector2(-272, 334)
+
+[node name="blob13" parent="world_layer/world_sort" instance=ExtResource("10_ycdy4")]
+position = Vector2(-309, 282)
+
+[node name="blob14" parent="world_layer/world_sort" instance=ExtResource("10_ycdy4")]
+position = Vector2(-431, 398)
+
+[node name="blob15" parent="world_layer/world_sort" instance=ExtResource("10_ycdy4")]
+position = Vector2(-470, 14)
+
+[node name="blob16" parent="world_layer/world_sort" instance=ExtResource("10_ycdy4")]
+position = Vector2(-386, -323)
+
+[node name="blob17" parent="world_layer/world_sort" instance=ExtResource("10_ycdy4")]
+position = Vector2(-312, -411)
+
+[node name="blob18" parent="world_layer/world_sort" instance=ExtResource("10_ycdy4")]
+position = Vector2(0, -520)
+
+[node name="grass" parent="world_layer/world_sort" instance=ExtResource("11_w48qg")]
+position = Vector2(-20, 114)
+
+[node name="grass2" parent="world_layer/world_sort" instance=ExtResource("11_w48qg")]
+position = Vector2(-187, 67)
+
+[node name="grass3" parent="world_layer/world_sort" instance=ExtResource("11_w48qg")]
+position = Vector2(-81, -220)
+
+[node name="grass4" parent="world_layer/world_sort" instance=ExtResource("11_w48qg")]
+position = Vector2(-28, -206)
+
+[node name="grass5" parent="world_layer/world_sort" instance=ExtResource("11_w48qg")]
+position = Vector2(166, -200)
+
+[node name="grass6" parent="world_layer/world_sort" instance=ExtResource("11_w48qg")]
+position = Vector2(222, -166)
+
+[node name="grass7" parent="world_layer/world_sort" instance=ExtResource("11_w48qg")]
+position = Vector2(329, 63)
+
+[node name="grass8" parent="world_layer/world_sort" instance=ExtResource("11_w48qg")]
+position = Vector2(237, 208)
+
+[node name="grass9" parent="world_layer/world_sort" instance=ExtResource("11_w48qg")]
+position = Vector2(274, 236)
+
+[node name="grass10" parent="world_layer/world_sort" instance=ExtResource("11_w48qg")]
+position = Vector2(-189, 313)
+
+[node name="grass11" parent="world_layer/world_sort" instance=ExtResource("11_w48qg")]
+position = Vector2(-155, 377)
+
+[node name="grass12" parent="world_layer/world_sort" instance=ExtResource("11_w48qg")]
+position = Vector2(-442, 182)
+
+[node name="grass13" parent="world_layer/world_sort" instance=ExtResource("11_w48qg")]
+position = Vector2(-468, -146)
+
+[node name="grass14" parent="world_layer/world_sort" instance=ExtResource("11_w48qg")]
+position = Vector2(-372, -255)
+
+[node name="grass15" parent="world_layer/world_sort" instance=ExtResource("11_w48qg")]
+position = Vector2(-303, -241)
+
+[node name="grass16" parent="world_layer/world_sort" instance=ExtResource("11_w48qg")]
+position = Vector2(-130, -562)
+
+[node name="grass17" parent="world_layer/world_sort" instance=ExtResource("11_w48qg")]
+position = Vector2(-203, -608)
+
+[node name="grass18" parent="world_layer/world_sort" instance=ExtResource("11_w48qg")]
+position = Vector2(259, -497)
+
+[node name="grass19" parent="world_layer/world_sort" instance=ExtResource("11_w48qg")]
+position = Vector2(296, -527)
+
+[node name="grass20" parent="world_layer/world_sort" instance=ExtResource("11_w48qg")]
+position = Vector2(373, -449)
+
 [node name="ui" type="CanvasLayer" parent="."]
+layer = 10
 
 [node name="resources" parent="ui" instance=ExtResource("8_5vw27")]
 anchors_preset = 1
@@ -49,104 +264,3 @@ script = ExtResource("1_0xm2m")
 [node name="radius_editor" type="Node2D" parent="."]
 script = ExtResource("3_kek77")
 radiuses = Array[float]([177.999, 286.025, 396.36])
-
-[node name="world_radius_mask" type="Polygon2D" parent="."]
-z_index = -1
-color = Color(0, 0, 0, 1)
-invert_enabled = true
-invert_border = 1024.0
-script = ExtResource("11_k3r2a")
-
-[node name="world_mask" type="CanvasLayer" parent="."]
-layer = -1
-script = ExtResource("13_maskscript")
-
-[node name="color_rect" type="ColorRect" parent="world_mask"]
-z_index = 100
-material = SubResource("ShaderMat_world_mask")
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 2
-
-[node name="hive" parent="." instance=ExtResource("2_lquwl")]
-
-[node name="tree" parent="." instance=ExtResource("3_h2yge")]
-position = Vector2(106, -130)
-
-[node name="tree2" parent="." instance=ExtResource("3_h2yge")]
-position = Vector2(127, -102)
-
-[node name="tree3" parent="." instance=ExtResource("3_h2yge")]
-position = Vector2(94, -90)
-
-[node name="tree4" parent="." instance=ExtResource("3_h2yge")]
-position = Vector2(318, -99)
-
-[node name="tree5" parent="." instance=ExtResource("3_h2yge")]
-position = Vector2(348, -76)
-
-[node name="tree6" parent="." instance=ExtResource("3_h2yge")]
-position = Vector2(324, -46)
-
-[node name="tree7" parent="." instance=ExtResource("3_h2yge")]
-position = Vector2(-181, 186)
-
-[node name="tree8" parent="." instance=ExtResource("3_h2yge")]
-position = Vector2(-147, 210)
-
-[node name="tree9" parent="." instance=ExtResource("3_h2yge")]
-position = Vector2(-145, 177)
-
-[node name="rock" parent="." instance=ExtResource("4_1bvp3")]
-position = Vector2(-210, -82)
-
-[node name="rock2" parent="." instance=ExtResource("4_1bvp3")]
-position = Vector2(-220, -148)
-
-[node name="rock3" parent="." instance=ExtResource("4_1bvp3")]
-position = Vector2(-168, -130)
-
-[node name="rock4" parent="." instance=ExtResource("4_1bvp3")]
-position = Vector2(-240, -274)
-
-[node name="rock5" parent="." instance=ExtResource("4_1bvp3")]
-position = Vector2(-192, -333)
-
-[node name="rock6" parent="." instance=ExtResource("4_1bvp3")]
-position = Vector2(-157, -333)
-
-[node name="rock7" parent="." instance=ExtResource("4_1bvp3")]
-position = Vector2(-107, -289)
-
-[node name="rock8" parent="." instance=ExtResource("4_1bvp3")]
-position = Vector2(-174, -270)
-
-[node name="rock9" parent="." instance=ExtResource("4_1bvp3")]
-position = Vector2(114, -472)
-
-[node name="unit" parent="." instance=ExtResource("5_lquwl")]
-position = Vector2(-25, 56)
-
-[node name="unit2" parent="." instance=ExtResource("5_lquwl")]
-position = Vector2(17, 61)
-
-[node name="berry_bush" parent="." instance=ExtResource("6_7mycd")]
-position = Vector2(251, -253)
-
-[node name="berry_bush2" parent="." instance=ExtResource("6_7mycd")]
-position = Vector2(237, -293)
-
-[node name="stone" parent="." instance=ExtResource("7_272bh")]
-position = Vector2(-173, -93)
-
-[node name="stone2" parent="." instance=ExtResource("7_272bh")]
-position = Vector2(-128, -154)
-
-[node name="stone3" parent="." instance=ExtResource("7_272bh")]
-position = Vector2(-134, -172)
-
-[node name="fruit" parent="." instance=ExtResource("10_4c57u")]
-position = Vector2(276, -210)
