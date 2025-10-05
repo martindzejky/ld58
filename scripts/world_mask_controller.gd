@@ -1,8 +1,9 @@
-extends Node
+extends CanvasLayer
 
 var shader_material: ShaderMaterial
 
 func _ready():
+  visible = true
   var node := get_node_or_null('color_rect')
   if node and node is CanvasItem:
     shader_material = node.material

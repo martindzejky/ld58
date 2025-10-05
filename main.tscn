@@ -7,9 +7,9 @@
 [ext_resource type="PackedScene" uid="uid://nd2rfinpsi24" path="res://objects/rock.tscn" id="4_1bvp3"]
 [ext_resource type="PackedScene" uid="uid://bhsbt24u6cyfc" path="res://objects/unit.tscn" id="5_lquwl"]
 [ext_resource type="PackedScene" uid="uid://c1d2puo3pe4ht" path="res://objects/berry_bush.tscn" id="6_7mycd"]
-[ext_resource type="PackedScene" uid="uid://dnvbfp2j6i8tc" path="res://objects/stone.tscn" id="7_272bh"]
 [ext_resource type="PackedScene" uid="uid://cuwxjbeipna8q" path="res://ui/resources.tscn" id="8_5vw27"]
 [ext_resource type="PackedScene" uid="uid://bbeleqmxs6bba" path="res://objects/fruit.tscn" id="10_4c57u"]
+[ext_resource type="PackedScene" uid="uid://ciealvuj1s2o1" path="res://objects/wood.tscn" id="10_w48qg"]
 [ext_resource type="PackedScene" uid="uid://kk4bhp5ubqjc" path="res://objects/blob.tscn" id="10_ycdy4"]
 [ext_resource type="PackedScene" uid="uid://d2qswu3whqv2w" path="res://objects/grass.tscn" id="11_w48qg"]
 [ext_resource type="Shader" uid="uid://bst7qku8ssd1" path="res://shaders/world_mask.gdshader" id="12_maskshader"]
@@ -35,6 +35,7 @@ shader_parameter/wobble_speed3 = 0.9
 [node name="main" type="Node"]
 
 [node name="world_mask" type="CanvasLayer" parent="."]
+visible = false
 script = ExtResource("13_maskscript")
 
 [node name="color_rect" type="ColorRect" parent="world_mask"]
@@ -57,82 +58,94 @@ y_sort_enabled = true
 [node name="hive" parent="world_layer/world_sort" instance=ExtResource("2_lquwl")]
 
 [node name="tree" parent="world_layer/world_sort" instance=ExtResource("3_h2yge")]
-position = Vector2(106, -130)
+position = Vector2(233, 159)
 
 [node name="tree2" parent="world_layer/world_sort" instance=ExtResource("3_h2yge")]
-position = Vector2(127, -102)
+position = Vector2(157, 119)
 
 [node name="tree3" parent="world_layer/world_sort" instance=ExtResource("3_h2yge")]
-position = Vector2(94, -90)
+position = Vector2(93, 222)
 
 [node name="tree4" parent="world_layer/world_sort" instance=ExtResource("3_h2yge")]
-position = Vector2(318, -99)
+position = Vector2(422, -354)
 
 [node name="tree5" parent="world_layer/world_sort" instance=ExtResource("3_h2yge")]
-position = Vector2(348, -76)
+position = Vector2(509, -446)
 
 [node name="tree6" parent="world_layer/world_sort" instance=ExtResource("3_h2yge")]
-position = Vector2(324, -46)
+position = Vector2(548, -355)
 
 [node name="tree7" parent="world_layer/world_sort" instance=ExtResource("3_h2yge")]
-position = Vector2(-181, 186)
+position = Vector2(629, -245)
 
 [node name="tree8" parent="world_layer/world_sort" instance=ExtResource("3_h2yge")]
-position = Vector2(-147, 210)
+position = Vector2(539, -186)
 
 [node name="tree9" parent="world_layer/world_sort" instance=ExtResource("3_h2yge")]
-position = Vector2(-145, 177)
+position = Vector2(-659, 144)
+
+[node name="tree10" parent="world_layer/world_sort" instance=ExtResource("3_h2yge")]
+position = Vector2(-596, 223)
 
 [node name="rock" parent="world_layer/world_sort" instance=ExtResource("4_1bvp3")]
-position = Vector2(-210, -82)
+position = Vector2(-237, -282)
 
 [node name="rock2" parent="world_layer/world_sort" instance=ExtResource("4_1bvp3")]
-position = Vector2(-220, -148)
+position = Vector2(-199, -370)
 
 [node name="rock3" parent="world_layer/world_sort" instance=ExtResource("4_1bvp3")]
-position = Vector2(-168, -130)
+position = Vector2(-94, -341)
 
 [node name="rock4" parent="world_layer/world_sort" instance=ExtResource("4_1bvp3")]
-position = Vector2(-240, -274)
-
-[node name="rock5" parent="world_layer/world_sort" instance=ExtResource("4_1bvp3")]
-position = Vector2(-192, -333)
-
-[node name="rock6" parent="world_layer/world_sort" instance=ExtResource("4_1bvp3")]
-position = Vector2(-157, -333)
+position = Vector2(-253, -494)
 
 [node name="rock7" parent="world_layer/world_sort" instance=ExtResource("4_1bvp3")]
-position = Vector2(-107, -289)
+position = Vector2(-83, 443)
 
 [node name="rock8" parent="world_layer/world_sort" instance=ExtResource("4_1bvp3")]
-position = Vector2(-174, -270)
+position = Vector2(32, 479)
 
 [node name="rock9" parent="world_layer/world_sort" instance=ExtResource("4_1bvp3")]
-position = Vector2(114, -472)
+position = Vector2(-117, 596)
 
-[node name="unit" parent="world_layer/world_sort" instance=ExtResource("5_lquwl")]
-position = Vector2(-25, 56)
+[node name="rock10" parent="world_layer/world_sort" instance=ExtResource("4_1bvp3")]
+position = Vector2(-24, 672)
 
-[node name="unit2" parent="world_layer/world_sort" instance=ExtResource("5_lquwl")]
-position = Vector2(17, 61)
+[node name="rock11" parent="world_layer/world_sort" instance=ExtResource("4_1bvp3")]
+position = Vector2(130, 641)
+
+[node name="rock12" parent="world_layer/world_sort" instance=ExtResource("4_1bvp3")]
+position = Vector2(122, 709)
+
+[node name="rock5" parent="world_layer/world_sort" instance=ExtResource("4_1bvp3")]
+position = Vector2(-392, -472)
+
+[node name="rock6" parent="world_layer/world_sort" instance=ExtResource("4_1bvp3")]
+position = Vector2(-378, -539)
 
 [node name="berry_bush" parent="world_layer/world_sort" instance=ExtResource("6_7mycd")]
-position = Vector2(251, -253)
+position = Vector2(464, -280)
 
 [node name="berry_bush2" parent="world_layer/world_sort" instance=ExtResource("6_7mycd")]
-position = Vector2(237, -293)
+position = Vector2(651, -114)
 
-[node name="stone" parent="world_layer/world_sort" instance=ExtResource("7_272bh")]
-position = Vector2(-173, -93)
+[node name="berry_bush3" parent="world_layer/world_sort" instance=ExtResource("6_7mycd")]
+position = Vector2(591, -25)
 
-[node name="stone2" parent="world_layer/world_sort" instance=ExtResource("7_272bh")]
-position = Vector2(-128, -154)
+[node name="berry_bush4" parent="world_layer/world_sort" instance=ExtResource("6_7mycd")]
+position = Vector2(-548, 331)
 
-[node name="stone3" parent="world_layer/world_sort" instance=ExtResource("7_272bh")]
-position = Vector2(-134, -172)
+[node name="berry_bush5" parent="world_layer/world_sort" instance=ExtResource("6_7mycd")]
+position = Vector2(-519, 452)
+
+[node name="berry_bush6" parent="world_layer/world_sort" instance=ExtResource("6_7mycd")]
+position = Vector2(-400, 489)
+
+[node name="berry_bush7" parent="world_layer/world_sort" instance=ExtResource("6_7mycd")]
+position = Vector2(-409, 411)
 
 [node name="fruit" parent="world_layer/world_sort" instance=ExtResource("10_4c57u")]
-position = Vector2(276, -210)
+position = Vector2(394, -228)
 
 [node name="blob" parent="world_layer/world_sort" instance=ExtResource("10_ycdy4")]
 position = Vector2(98, 61)
@@ -144,7 +157,7 @@ position = Vector2(-224, 24)
 position = Vector2(-251, -29)
 
 [node name="blob4" parent="world_layer/world_sort" instance=ExtResource("10_ycdy4")]
-position = Vector2(6, -290)
+position = Vector2(11, -269)
 
 [node name="blob5" parent="world_layer/world_sort" instance=ExtResource("10_ycdy4")]
 position = Vector2(91, -334)
@@ -153,7 +166,7 @@ position = Vector2(91, -334)
 position = Vector2(407, -361)
 
 [node name="blob7" parent="world_layer/world_sort" instance=ExtResource("10_ycdy4")]
-position = Vector2(475, -137)
+position = Vector2(500, -119)
 
 [node name="blob8" parent="world_layer/world_sort" instance=ExtResource("10_ycdy4")]
 position = Vector2(428, -74)
@@ -174,13 +187,13 @@ position = Vector2(-272, 334)
 position = Vector2(-309, 282)
 
 [node name="blob14" parent="world_layer/world_sort" instance=ExtResource("10_ycdy4")]
-position = Vector2(-431, 398)
+position = Vector2(-258, 580)
 
 [node name="blob15" parent="world_layer/world_sort" instance=ExtResource("10_ycdy4")]
-position = Vector2(-470, 14)
+position = Vector2(-448, 14)
 
 [node name="blob16" parent="world_layer/world_sort" instance=ExtResource("10_ycdy4")]
-position = Vector2(-386, -323)
+position = Vector2(-411, -338)
 
 [node name="blob17" parent="world_layer/world_sort" instance=ExtResource("10_ycdy4")]
 position = Vector2(-312, -411)
@@ -222,10 +235,10 @@ position = Vector2(-189, 313)
 position = Vector2(-155, 377)
 
 [node name="grass12" parent="world_layer/world_sort" instance=ExtResource("11_w48qg")]
-position = Vector2(-442, 182)
+position = Vector2(-434, 170)
 
 [node name="grass13" parent="world_layer/world_sort" instance=ExtResource("11_w48qg")]
-position = Vector2(-468, -146)
+position = Vector2(-442, -136)
 
 [node name="grass14" parent="world_layer/world_sort" instance=ExtResource("11_w48qg")]
 position = Vector2(-372, -255)
@@ -248,6 +261,15 @@ position = Vector2(296, -527)
 [node name="grass20" parent="world_layer/world_sort" instance=ExtResource("11_w48qg")]
 position = Vector2(373, -449)
 
+[node name="wood" parent="world_layer/world_sort" instance=ExtResource("10_w48qg")]
+position = Vector2(-543, -37)
+
+[node name="unit" parent="world_layer/world_sort" instance=ExtResource("5_lquwl")]
+position = Vector2(0, 18)
+
+[node name="unit2" parent="world_layer/world_sort" instance=ExtResource("5_lquwl")]
+position = Vector2(35, 33)
+
 [node name="ui" type="CanvasLayer" parent="."]
 layer = 10
 
@@ -263,4 +285,4 @@ script = ExtResource("1_0xm2m")
 
 [node name="radius_editor" type="Node2D" parent="."]
 script = ExtResource("3_kek77")
-radiuses = Array[float]([177.999, 286.025, 396.36])
+radiuses = Array[float]([305.0, 496.0, 746.0])
