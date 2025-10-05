@@ -3,12 +3,19 @@
 [ext_resource type="Script" uid="uid://cireucdpkpbtv" path="res://scripts/resources_ui.gd" id="1_wnjsr"]
 [ext_resource type="PackedScene" uid="uid://dd3dtydgx0kos" path="res://ui/resource_display.tscn" id="2_qvlek"]
 
-[node name="resources" type="VBoxContainer"]
-anchors_preset = 15
+[node name="resources" type="MarginContainer" node_paths=PackedStringArray("container")]
+anchors_preset = 1
+anchor_left = 1.0
 anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+offset_left = -20.0
+offset_bottom = 20.0
+grow_horizontal = 0
 size_flags_vertical = 4
 script = ExtResource("1_wnjsr")
 resource_display = ExtResource("2_qvlek")
+container = NodePath("container")
+
+[node name="container" type="VBoxContainer" parent="."]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 0

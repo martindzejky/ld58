@@ -1,4 +1,14 @@
-extends Label
+extends Control
+
+@export var icon: TextureRect
+@export var amount: Label
+@export var notification: TextureRect
+
+@export var wood_icon: Texture2D
+@export var stone_icon: Texture2D
+@export var fruit_icon: Texture2D
+@export var notification_warning: Texture2D
+@export var notification_done: Texture2D
 
 var resource_type: ResourceItem.Type
 
@@ -15,11 +25,12 @@ func _on_task_completed():
   update_text()
 
 func update_text():
-  text = get_resource_name(resource_type) + ': '
+  icon.texture = get_resource_icon(resource_type)
+  amount.text = ''
   if resource_type in Game.resources:
-    text += str(Game.resources[resource_type])
+    amount.text += str(Game.resources[resource_type])
   else:
-    text += '0'
+    amount.text += '0'
 
   if Game.tasks.size() == 0:
     return
@@ -27,23 +38,39 @@ func update_text():
   var current_task = Game.tasks[0]
   match resource_type:
     ResourceItem.Type.WOOD:
+      update_notification(current_task.wood)
       if current_task.wood > 0:
-        text += ' / ' + str(current_task.wood)
+        amount.text += '/' + str(current_task.wood)
     ResourceItem.Type.STONE:
+      update_notification(current_task.stone)
       if current_task.stone > 0:
-        text += ' / ' + str(current_task.stone)
+        amount.text += '/' + str(current_task.stone)
     ResourceItem.Type.FRUIT:
+      update_notification(current_task.fruit)
       if current_task.fruit > 0:
-        text += ' / ' + str(current_task.fruit)
+        amount.text += '/' + str(current_task.fruit)
 
+func update_notification(required: int):
+  if required <= 0:
+    notification.texture = null
+    return
 
-func get_resource_name(type: ResourceItem.Type):
+  var amount = 0
+  if resource_type in Game.resources:
+    amount = Game.resources[resource_type]
+
+  if amount < required:
+    notification.texture = notification_warning
+  else:
+    notification.texture = notification_done
+
+func get_resource_icon(type: ResourceItem.Type):
   match type:
     ResourceItem.Type.WOOD:
-      return 'Wood'
+      return wood_icon
     ResourceItem.Type.STONE:
-      return 'Stone'
+      return stone_icon
     ResourceItem.Type.FRUIT:
-      return 'Fruit'
+      return fruit_icon
     _:
-      return 'Unknown'
+      return null

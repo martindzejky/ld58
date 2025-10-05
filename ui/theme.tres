@@ -1,0 +1,19 @@
+[gd_resource type="Theme" load_steps=3 format=3 uid="uid://bs7ko55pvpltx"]
+
+[ext_resource type="StyleBox" uid="uid://c4v14fnj4sbsv" path="res://ui/style_box_texture.tres" id="1_jf26r"]
+[ext_resource type="FontFile" uid="uid://do57yg05iwy5c" path="res://fonts/averia_sans_libre/AveriaSansLibre-Bold.ttf" id="1_rqugq"]
+
+[resource]
+default_font = ExtResource("1_rqugq")
+default_font_size = 48
+BoxContainer/constants/separation = 15
+FlowContainer/constants/h_separation = 15
+FlowContainer/constants/v_separation = 15
+Label/colors/font_color = Color(0.101960786, 0.13725491, 0.16862746, 1)
+Label/colors/font_outline_color = Color(0.93333334, 0.93333334, 0.94509804, 1)
+MarginContainer/constants/margin_bottom = 10
+MarginContainer/constants/margin_left = 10
+MarginContainer/constants/margin_right = 10
+MarginContainer/constants/margin_top = 10
+Panel/styles/panel = ExtResource("1_jf26r")
+PanelContainer/styles/panel = ExtResource("1_jf26r")

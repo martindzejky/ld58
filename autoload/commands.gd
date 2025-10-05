@@ -4,7 +4,7 @@ extends Node2D
 @export var command_scene: PackedScene
 
 const CLICK_MAX_DRAG_PX = 10
-const DELETE_COMMAND_DISTANCE = 50
+const DELETE_COMMAND_DISTANCE = 140
 
 var pressing = false
 var press_position = Vector2.ZERO

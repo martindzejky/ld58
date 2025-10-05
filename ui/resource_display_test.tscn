@@ -1,0 +1,16 @@
+[gd_scene load_steps=4 format=3 uid="uid://jaip3koa73ye"]
+
+[ext_resource type="PackedScene" uid="uid://dd3dtydgx0kos" path="res://ui/resource_display.tscn" id="1_sfs8p"]
+[ext_resource type="Texture2D" uid="uid://cog2hlwpotwt3" path="res://sprites/check.png" id="2_0rp7h"]
+[ext_resource type="Texture2D" uid="uid://463hj4f0qx03" path="res://sprites/stone.png" id="2_sfs8p"]
+
+[node name="resource_display" instance=ExtResource("1_sfs8p")]
+
+[node name="notification" parent="." index="0"]
+texture = ExtResource("2_0rp7h")
+
+[node name="icon" parent="panel/container" index="0"]
+texture = ExtResource("2_sfs8p")
+
+[node name="text" parent="panel/container" index="1"]
+text = "2"

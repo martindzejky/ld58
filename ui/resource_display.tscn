@@ -1,6 +1,38 @@
-[gd_scene load_steps=2 format=3 uid="uid://dd3dtydgx0kos"]
+[gd_scene load_steps=7 format=3 uid="uid://dd3dtydgx0kos"]
 
 [ext_resource type="Script" uid="uid://d3cy1qx251ybv" path="res://scripts/resource_display.gd" id="1_alkvs"]
+[ext_resource type="Texture2D" uid="uid://ctgugd3lo0r3s" path="res://sprites/wood.png" id="2_64w62"]
+[ext_resource type="Texture2D" uid="uid://463hj4f0qx03" path="res://sprites/stone.png" id="3_rst3y"]
+[ext_resource type="Texture2D" uid="uid://by5ucsa0n0w63" path="res://sprites/fruit.png" id="4_4xxjk"]
+[ext_resource type="Texture2D" uid="uid://cs2ui3qjjeqbr" path="res://sprites/warning.png" id="5_4xxjk"]
+[ext_resource type="Texture2D" uid="uid://cog2hlwpotwt3" path="res://sprites/check.png" id="6_h8jtg"]
 
-[node name="resource_display" type="Label"]
+[node name="resource_display" type="HBoxContainer" node_paths=PackedStringArray("icon", "amount", "notification")]
+offset_right = 1.0
+offset_bottom = 20.0
 script = ExtResource("1_alkvs")
+icon = NodePath("panel/container/icon")
+amount = NodePath("panel/container/text")
+notification = NodePath("notification")
+wood_icon = ExtResource("2_64w62")
+stone_icon = ExtResource("3_rst3y")
+fruit_icon = ExtResource("4_4xxjk")
+notification_warning = ExtResource("5_4xxjk")
+notification_done = ExtResource("6_h8jtg")
+
+[node name="notification" type="TextureRect" parent="."]
+layout_mode = 2
+stretch_mode = 3
+
+[node name="panel" type="PanelContainer" parent="."]
+layout_mode = 2
+
+[node name="container" type="HBoxContainer" parent="panel"]
+layout_mode = 2
+
+[node name="icon" type="TextureRect" parent="panel/container"]
+layout_mode = 2
+stretch_mode = 3
+
+[node name="text" type="Label" parent="panel/container"]
+layout_mode = 2

@@ -24,13 +24,16 @@ Commands="*res://autoload/commands.tscn"
 
 [display]
 
-window/size/viewport_width=700
-window/size/viewport_height=700
+window/size/viewport_width=1400
+window/size/viewport_height=1400
 window/size/resizable=false
+window/stretch/mode="canvas_items"
+window/stretch/aspect="expand"
 window/handheld/orientation=1
 
 [gui]
 
+theme/custom="uid://bs7ko55pvpltx"
 theme/custom_font="uid://do57yg05iwy5c"
 
 [layer_names]
