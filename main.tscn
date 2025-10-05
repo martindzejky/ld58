@@ -288,6 +288,7 @@ ambience_player = NodePath("ambience")
 current = true
 
 [node name="ambience" type="AudioStreamPlayer" parent="camera"]
+process_mode = 3
 stream = ExtResource("15_vivmo")
 volume_db = -3.077
 autoplay = true

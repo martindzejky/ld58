@@ -23,7 +23,7 @@ func _on_new_resource(type: ResourceItem.Type):
   display.resource_type = type
   container.add_child(display)
 
-func _on_task_completed():
+func _on_task_completed(_task):
   force_display_required_resources()
 
 func force_display_required_resources():

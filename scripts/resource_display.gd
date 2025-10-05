@@ -21,7 +21,7 @@ func _on_resource_changed(type: ResourceItem.Type):
   if type == resource_type:
     update_text()
 
-func _on_task_completed():
+func _on_task_completed(_task):
   update_text()
 
 func update_text():

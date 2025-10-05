@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://cm24tfg0gxxht"]
+[gd_scene load_steps=3 format=3 uid="uid://cm24tfg0gxxht"]
 
 [ext_resource type="Script" uid="uid://bv8yvh44erhmd" path="res://scripts/upgrades_ui.gd" id="1_gt5ug"]
+[ext_resource type="AudioStream" uid="uid://q4afstt7a8tm" path="res://sounds/upgrade.mp3" id="2_80r6b"]
 
 [node name="upgrades_ui" type="VBoxContainer" node_paths=PackedStringArray("container")]
 process_mode = 3
@@ -23,3 +24,7 @@ layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 alignment = 1
+
+[node name="pop" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_80r6b")
+autoplay = true
