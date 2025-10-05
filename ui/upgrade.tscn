@@ -1,0 +1,52 @@
+[gd_scene load_steps=5 format=3 uid="uid://ba80gpxxavx8r"]
+
+[ext_resource type="Texture2D" uid="uid://blvdvj4m3ik04" path="res://sprites/upgrade_star.png" id="1_141gf"]
+[ext_resource type="Script" uid="uid://ome0auv240qs" path="res://scripts/upgrade.gd" id="1_m7vir"]
+[ext_resource type="Script" uid="uid://bwuaypwap6qx1" path="res://scripts/upgrade_star.gd" id="2_pgj5t"]
+[ext_resource type="Texture2D" uid="uid://dh80mcsuuo31s" path="res://sprites/upgrade_card.png" id="3_vwur3"]
+
+[node name="upgrade" type="CenterContainer"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -167.5
+offset_top = -240.5
+offset_right = 167.5
+offset_bottom = 240.5
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+script = ExtResource("1_m7vir")
+
+[node name="card" type="TextureRect" parent="."]
+layout_mode = 2
+texture = ExtResource("3_vwur3")
+
+[node name="star" type="TextureRect" parent="card"]
+self_modulate = Color(1, 1, 1, 0.3372549)
+show_behind_parent = true
+z_index = -4
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -512.0
+offset_top = -512.0
+offset_right = 512.0
+offset_bottom = 512.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("1_141gf")
+script = ExtResource("2_pgj5t")
+
+[node name="icon" type="TextureRect" parent="."]
+layout_mode = 2
+
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]

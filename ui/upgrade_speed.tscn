@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://d1h2hd1sufga3"]
+
+[ext_resource type="PackedScene" uid="uid://ba80gpxxavx8r" path="res://ui/upgrade.tscn" id="1_7bqlp"]
+[ext_resource type="Texture2D" uid="uid://b2eym2lflx84x" path="res://sprites/upgrade_speed.png" id="2_gm40j"]
+
+[node name="upgrade_speed" instance=ExtResource("1_7bqlp")]
+
+[node name="icon" parent="." index="2"]
+texture = ExtResource("2_gm40j")

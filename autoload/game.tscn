@@ -1,27 +1,35 @@
-[gd_scene load_steps=8 format=3 uid="uid://cptdnpvj16px0"]
+[gd_scene load_steps=12 format=3 uid="uid://cptdnpvj16px0"]
 
 [ext_resource type="Script" uid="uid://cnfp3mw0yduwt" path="res://autoload/game.gd" id="1_1w5w3"]
 [ext_resource type="Script" uid="uid://bibkfwydm1vt5" path="res://scripts/task.gd" id="2_j5esd"]
 [ext_resource type="AudioStream" uid="uid://c1m3q1botjnt7" path="res://sounds/pop_random.tres" id="3_kujy2"]
 [ext_resource type="AudioStream" uid="uid://q4afstt7a8tm" path="res://sounds/upgrade.mp3" id="3_pjkha"]
+[ext_resource type="PackedScene" uid="uid://d1h2hd1sufga3" path="res://ui/upgrade_speed.tscn" id="3_rat6i"]
 [ext_resource type="PackedScene" uid="uid://dpd8b6yo21atc" path="res://ui/end_screen.tscn" id="4_g10wv"]
+[ext_resource type="PackedScene" uid="uid://b5ccatjswek4m" path="res://ui/upgrade_units.tscn" id="4_jcj26"]
+[ext_resource type="PackedScene" uid="uid://bxb8xu3wntl0s" path="res://ui/upgrade_attack.tscn" id="5_jcj26"]
+[ext_resource type="PackedScene" uid="uid://cm24tfg0gxxht" path="res://ui/upgrades_ui.tscn" id="8_mdg26"]
 
 [sub_resource type="Resource" id="Resource_j5esd"]
 script = ExtResource("2_j5esd")
 wood = 3
+upgrades = Array[PackedScene]([ExtResource("3_rat6i"), ExtResource("4_jcj26")])
 metadata/_custom_type_script = "uid://bibkfwydm1vt5"
 
 [sub_resource type="Resource" id="Resource_pjkha"]
 script = ExtResource("2_j5esd")
 stone = 4
+upgrades = Array[PackedScene]([ExtResource("5_jcj26"), ExtResource("3_rat6i")])
 metadata/_custom_type_script = "uid://bibkfwydm1vt5"
 
 [node name="game" type="Node" node_paths=PackedStringArray("upgrade_sound")]
+process_mode = 3
 script = ExtResource("1_1w5w3")
 tasks = Array[ExtResource("2_j5esd")]([SubResource("Resource_j5esd"), SubResource("Resource_pjkha")])
 upgrade_sound = NodePath("upgrade")
 reveal_sound = ExtResource("3_kujy2")
 end_screen = ExtResource("4_g10wv")
+upgrades_ui = ExtResource("8_mdg26")
 
 [node name="upgrade" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("3_pjkha")

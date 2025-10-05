@@ -1,7 +1,8 @@
-[gd_scene load_steps=8 format=3 uid="uid://bwt5l87xappyf"]
+[gd_scene load_steps=9 format=3 uid="uid://bwt5l87xappyf"]
 
 [ext_resource type="Script" uid="uid://lrnnti74lwrj" path="res://scripts/hive.gd" id="1_f03at"]
 [ext_resource type="Texture2D" uid="uid://b0cpkvq5pxhp5" path="res://sprites/hut.png" id="2_f03at"]
+[ext_resource type="PackedScene" uid="uid://bhsbt24u6cyfc" path="res://objects/unit.tscn" id="2_mkqtm"]
 [ext_resource type="PackedScene" uid="uid://cbqmkhvtbk1d2" path="res://objects/shadow.tscn" id="3_ejbv4"]
 [ext_resource type="AudioStream" uid="uid://cy08kfsqacutl" path="res://sounds/collect_random.tres" id="4_iaro7"]
 
@@ -46,6 +47,7 @@ _data = {
 script = ExtResource("1_f03at")
 animation_player = NodePath("animation")
 collect_sound = NodePath("collect")
+unit_scene = ExtResource("2_mkqtm")
 
 [node name="sprite_parent" type="Node2D" parent="."]
 

@@ -25,7 +25,6 @@ const MIN_WANDER_POSITION_TIME = 2.0
 const MAX_WANDER_POSITION_TIME = 4.0
 const MAX_WANDER_POSITION_DISTANCE = 50.0
 
-const MOVE_SPEED = 100.0
 const REACHED_TARGET_DISTANCE = 10.0
 const REACHED_TARGET_COMMAND_DISTANCE = 30.0
 
@@ -171,7 +170,7 @@ func interact_with_job_target():
   if current_job.target is ResourceObject:
     if attack_cooldown_timer.is_stopped():
       attack_cooldown_timer.start()
-      current_job.target.take_damage(1) # TODO: this will be upgradable
+      current_job.target.take_damage(Game.current_unit_strength)
       play_animation('attack')
     return
 
@@ -214,7 +213,7 @@ func move_to_position(delta: float, target_position: Vector2):
   if distance < REACHED_TARGET_DISTANCE:
     return true
   else:
-    global_position += direction.normalized() * MOVE_SPEED * delta
+    global_position += direction.normalized() * Game.current_move_speed * delta
     return false
 
 func _on_wander_position_timer_timeout() -> void:

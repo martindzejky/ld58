@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://bxb8xu3wntl0s"]
+
+[ext_resource type="PackedScene" uid="uid://ba80gpxxavx8r" path="res://ui/upgrade.tscn" id="1_cbgfe"]
+[ext_resource type="Texture2D" uid="uid://b75xun1064sla" path="res://sprites/upgrade_attack.png" id="2_qfpkn"]
+
+[node name="upgrade_attack" instance=ExtResource("1_cbgfe")]
+type = 1
+
+[node name="icon" parent="." index="2"]
+texture = ExtResource("2_qfpkn")
