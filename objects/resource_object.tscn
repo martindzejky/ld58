@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://b8ckrbw0eejay"]
+[gd_scene load_steps=10 format=3 uid="uid://b8ckrbw0eejay"]
 
 [ext_resource type="Script" uid="uid://dhpfm3pyklppq" path="res://scripts/resource_object.gd" id="1_1b3pf"]
 [ext_resource type="Script" uid="uid://dlyrcahwsrxyt" path="res://scripts/random_sprite.gd" id="2_hmn2e"]
@@ -20,6 +20,44 @@ tracks/0/keys = {
 "update": 0,
 "values": [Vector2(1, 1)]
 }
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("sprite_parent:scale:x")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(1, -0.15, 0, 0.15, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("sprite_parent:scale:y")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(1, -0.15, 0, 0.15, 0),
+"times": PackedFloat32Array(0)
+}
+
+[sub_resource type="Animation" id="Animation_reveal_res"]
+resource_name = "reveal"
+length = 0.45
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("sprite_parent:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0878111, 0.20641299, 0.313611, 0.39989614),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0.878, 1.121), Vector2(1.278, 0.88), Vector2(0.96, 1.06), Vector2(1, 1)]
+}
 
 [sub_resource type="Animation" id="Animation_hmn2e"]
 resource_name = "squish"
@@ -37,25 +75,50 @@ tracks/0/keys = {
 "values": [Vector2(0.74, 1.295), Vector2(1.196, 0.958), Vector2(0.948, 1.154), Vector2(1.101, 0.945), Vector2(1, 1)]
 }
 
-[sub_resource type="Animation" id="Animation_reveal_res"]
-resource_name = "reveal"
-length = 0.45
-tracks/0/type = "value"
+[sub_resource type="Animation" id="Animation_0qxx3"]
+resource_name = "destroy"
+length = 0.1
+tracks/0/type = "bezier"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("sprite_parent:scale")
+tracks/0/path = NodePath("sprite_parent:scale:x")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.087811095, 0.20641299, 0.313611, 0.39989613),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
-"update": 0,
-"values": [Vector2(0, 0), Vector2(0.878, 1.121), Vector2(1.278, 0.88), Vector2(0.96, 1.06), Vector2(1, 1)]
+"handle_modes": PackedInt32Array(2, 0, 0),
+"points": PackedFloat32Array(1, 0, 0, 0.016969264, -0.40740335, 0.843, -0.04861465, -0.46582085, 0.04861465, 0.46582085, 1e-05, -0.012439787, 0.23659615, 0, 0),
+"times": PackedFloat32Array(0, 0.054576818, 0.094075695)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("sprite_parent:scale:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(2, 0, 0),
+"points": PackedFloat32Array(1, 0, 0, 0.016969264, 0.3175695, 1.283, -0.025224581, 0.3042766, 0.025224581, -0.3042766, 1e-05, -0.006477624, 0.16311866, 0, 0),
+"times": PackedFloat32Array(0, 0.054576818, 0.094075695)
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.09682748),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"queue_free"
+}]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_0qxx3"]
 _data = {
 &"RESET": SubResource("Animation_reset_res"),
+&"destroy": SubResource("Animation_0qxx3"),
 &"reveal": SubResource("Animation_reveal_res"),
 &"squish": SubResource("Animation_hmn2e")
 }

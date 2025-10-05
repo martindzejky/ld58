@@ -13,10 +13,11 @@ func reveal():
   animation_player.play('reveal')
 
 func take_damage(amount: int):
-  animation_player.play('squish')
   health -= amount
-  if health <= 0:
-    queue_free()
+  if health > 0:
+    animation_player.play('squish')
+  else:
+    animation_player.play('destroy')
     var amount_to_spawn = randi_range(amount_min, amount_max)
     for i in amount_to_spawn:
       var item = resource_item.instantiate()
