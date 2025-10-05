@@ -48,6 +48,7 @@ func update_task_completion():
 
   if tasks.size() > 0:
     var tween = create_tween()
+    tween.set_trans(Tween.TRANS_QUAD)
     tween.tween_property(self, 'world_radius', tasks[0].world_radius, WORLD_RADIUS_CHANGE_TIME)
 
 func check_resource(type: ResourceItem.Type, required: int):
