@@ -1,10 +1,25 @@
-[gd_scene load_steps=7 format=3 uid="uid://b8ckrbw0eejay"]
+[gd_scene load_steps=8 format=3 uid="uid://b8ckrbw0eejay"]
 
 [ext_resource type="Script" uid="uid://dhpfm3pyklppq" path="res://scripts/resource_object.gd" id="1_1b3pf"]
 [ext_resource type="Script" uid="uid://dlyrcahwsrxyt" path="res://scripts/random_sprite.gd" id="2_hmn2e"]
 [ext_resource type="Script" uid="uid://ccov1rl0ya212" path="res://scripts/visibility_by_world_radius.gd" id="3_hmn2e"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_bk1pl"]
+
+[sub_resource type="Animation" id="Animation_reset_res"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("sprite_parent:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
 
 [sub_resource type="Animation" id="Animation_hmn2e"]
 resource_name = "squish"
@@ -22,8 +37,9 @@ tracks/0/keys = {
 "values": [Vector2(0.74, 1.295), Vector2(1.196, 0.958), Vector2(0.948, 1.154), Vector2(1.101, 0.945), Vector2(1, 1)]
 }
 
-[sub_resource type="Animation" id="Animation_reset_res"]
-length = 0.001
+[sub_resource type="Animation" id="Animation_reveal_res"]
+resource_name = "reveal"
+length = 0.45
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -31,15 +47,16 @@ tracks/0/path = NodePath("sprite_parent:scale")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0, 0.087811095, 0.20641299, 0.313611, 0.39989613),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
 "update": 0,
-"values": [Vector2(1, 1)]
+"values": [Vector2(0, 0), Vector2(0.878, 1.121), Vector2(1.278, 0.88), Vector2(0.96, 1.06), Vector2(1, 1)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_0qxx3"]
 _data = {
 &"RESET": SubResource("Animation_reset_res"),
+&"reveal": SubResource("Animation_reveal_res"),
 &"squish": SubResource("Animation_hmn2e")
 }
 

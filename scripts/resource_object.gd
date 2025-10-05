@@ -9,6 +9,9 @@ class_name ResourceObject extends Node2D
 const RESOURCE_ITEM_MIN_SPAWN_DISTANCE = 4.0
 const RESOURCE_ITEM_MAX_SPAWN_DISTANCE = 12.0
 
+func reveal():
+  animation_player.play('reveal')
+
 func take_damage(amount: int):
   animation_player.play('squish')
   health -= amount

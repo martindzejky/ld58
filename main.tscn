@@ -34,6 +34,10 @@ shader_parameter/wobble_speed3 = 0.9
 
 [node name="main" type="Node"]
 
+[node name="radius_editor" type="Node2D" parent="."]
+script = ExtResource("3_kek77")
+radiuses = Array[float]([305.0, 496.0, 746.0])
+
 [node name="world_mask" type="CanvasLayer" parent="."]
 visible = false
 script = ExtResource("13_maskscript")
@@ -282,7 +286,3 @@ grow_vertical = 1
 
 [node name="camera" type="Camera2D" parent="."]
 script = ExtResource("1_0xm2m")
-
-[node name="radius_editor" type="Node2D" parent="."]
-script = ExtResource("3_kek77")
-radiuses = Array[float]([305.0, 496.0, 746.0])
