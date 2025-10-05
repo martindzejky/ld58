@@ -1,0 +1,56 @@
+[gd_scene load_steps=5 format=3 uid="uid://dpd8b6yo21atc"]
+
+[ext_resource type="Script" uid="uid://bj4fd55uqw0im" path="res://scripts/end_screen.gd" id="1_70k24"]
+[ext_resource type="AudioStream" uid="uid://dmfen6b6q7luq" path="res://sounds/applause.wav" id="2_s243q"]
+[ext_resource type="AudioStream" uid="uid://q4afstt7a8tm" path="res://sounds/upgrade.mp3" id="3_7ibj4"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_d2olf"]
+font_size = 86
+font_color = Color(0.101960786, 0.13725491, 0.16862746, 1)
+outline_size = 25
+outline_color = Color(0.94509804, 0.9411765, 0.8980392, 1)
+
+[node name="end_screen" type="CenterContainer" node_paths=PackedStringArray("panel")]
+process_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_70k24")
+panel = NodePath("margin/panel")
+
+[node name="clap" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_s243q")
+autoplay = true
+
+[node name="pop" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_7ibj4")
+autoplay = true
+
+[node name="margin" type="MarginContainer" parent="."]
+layout_mode = 2
+
+[node name="panel" type="PanelContainer" parent="margin"]
+layout_mode = 2
+
+[node name="container" type="VBoxContainer" parent="margin/panel"]
+layout_mode = 2
+
+[node name="title" type="Label" parent="margin/panel/container"]
+layout_mode = 2
+text = "You win!"
+label_settings = SubResource("LabelSettings_d2olf")
+horizontal_alignment = 1
+
+[node name="text" type="Label" parent="margin/panel/container"]
+custom_minimum_size = Vector2(600, 0)
+layout_mode = 2
+text = "Thank you for playing, this is as far as I got during the jam. If you liked the game, please leave a comment on the submission page."
+autowrap_mode = 2
+
+[node name="confirm" type="Button" parent="margin/panel/container"]
+layout_mode = 2
+text = "OK"
+
+[connection signal="pressed" from="margin/panel/container/confirm" to="." method="_on_confirm_pressed"]

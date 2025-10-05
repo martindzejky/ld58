@@ -27,6 +27,9 @@ func _on_task_completed():
   force_display_required_resources()
 
 func force_display_required_resources():
+  if Game.tasks.size() == 0:
+    return
+
   # force display required resources for the task
   var current_task = Game.tasks[0] as Task
   for resource_name in LOOKUP:

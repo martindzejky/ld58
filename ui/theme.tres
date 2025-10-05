@@ -1,5 +1,6 @@
-[gd_resource type="Theme" load_steps=3 format=3 uid="uid://bs7ko55pvpltx"]
+[gd_resource type="Theme" load_steps=4 format=3 uid="uid://bs7ko55pvpltx"]
 
+[ext_resource type="StyleBox" uid="uid://jkkha6mojgwu" path="res://ui/button_box.tres" id="1_6lx7k"]
 [ext_resource type="StyleBox" uid="uid://c4v14fnj4sbsv" path="res://ui/style_box_texture.tres" id="1_jf26r"]
 [ext_resource type="FontFile" uid="uid://do57yg05iwy5c" path="res://fonts/averia_sans_libre/AveriaSansLibre-Bold.ttf" id="1_rqugq"]
 
@@ -7,6 +8,11 @@
 default_font = ExtResource("1_rqugq")
 default_font_size = 48
 BoxContainer/constants/separation = 15
+Button/styles/disabled = ExtResource("1_6lx7k")
+Button/styles/focus = ExtResource("1_6lx7k")
+Button/styles/hover = ExtResource("1_6lx7k")
+Button/styles/normal = ExtResource("1_6lx7k")
+Button/styles/pressed = ExtResource("1_6lx7k")
 FlowContainer/constants/h_separation = 15
 FlowContainer/constants/v_separation = 15
 Label/colors/font_color = Color(0.101960786, 0.13725491, 0.16862746, 1)

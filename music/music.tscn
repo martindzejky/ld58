@@ -11,5 +11,4 @@ note_timer_max = 6.0
 
 [node name="notes" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("2_gw4jf")
-max_polyphony = 2
 bus = &"music"

@@ -37,7 +37,7 @@ shader_parameter/wobble_speed3 = 0.9
 
 [node name="radius_editor" type="Node2D" parent="."]
 script = ExtResource("3_kek77")
-radiuses = Array[float]([305.0, 496.0, 746.0])
+radiuses = Array[float]([305.0, 496.0])
 
 [node name="world_mask" type="CanvasLayer" parent="."]
 visible = false
@@ -275,7 +275,7 @@ position = Vector2(0, 18)
 [node name="unit2" parent="world_layer/world_sort" instance=ExtResource("5_lquwl")]
 position = Vector2(35, 33)
 
-[node name="ui" type="CanvasLayer" parent="."]
+[node name="ui" type="CanvasLayer" parent="." groups=["ui_layer"]]
 layer = 10
 
 [node name="resources" parent="ui" instance=ExtResource("8_5vw27")]

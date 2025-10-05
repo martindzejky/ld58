@@ -25,6 +25,8 @@ const WORLD_RADIUS_CHANGE_TIME = 2
 @export var upgrade_sound: AudioStreamPlayer
 @export var reveal_sound: AudioStream
 
+@export var end_screen: PackedScene
+
 func collect_resource(resource: ResourceItem):
   var type = resource.type
   if type in resources:
@@ -54,6 +56,9 @@ func update_task_completion():
     tween.set_trans(Tween.TRANS_QUAD)
     tween.tween_property(self, 'world_radius', tasks[0].world_radius, WORLD_RADIUS_CHANGE_TIME)
     upgrade_sound.play()
+  else:
+    var end_screen_instance = end_screen.instantiate()
+    get_tree().call_group('ui_layer', 'add_child', end_screen_instance)
 
 func check_resource(type: ResourceItem.Type, required: int):
   if required <= 0: return true
