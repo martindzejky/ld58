@@ -4,9 +4,13 @@
 [ext_resource type="PackedScene" uid="uid://bbeleqmxs6bba" path="res://objects/fruit.tscn" id="2_d8ko4"]
 [ext_resource type="Texture2D" uid="uid://b3yc07jqyda5v" path="res://sprites/berry_bush.png" id="3_hx663"]
 [ext_resource type="PackedScene" uid="uid://cbqmkhvtbk1d2" path="res://objects/shadow.tscn" id="4_8hbwk"]
+[ext_resource type="AudioStream" path="res://sounds/bush_hit_random.tres" id="5_bushhitrand"]
+[ext_resource type="AudioStream" path="res://sounds/destroy_bush_random.tres" id="6_destroybushrand"]
 
 [node name="berry_bush" instance=ExtResource("1_j00qk")]
 resource_item = ExtResource("2_d8ko4")
+hit_sound = ExtResource("5_bushhitrand")
+destroy_sound = ExtResource("6_destroybushrand")
 
 [node name="sprite" parent="sprite_parent" index="0"]
 position = Vector2(-2.3841858e-07, -35)

@@ -2,12 +2,17 @@ class_name MainCamera extends Camera2D
 
 var dragging = false
 
-const MIN_ZOOM = 0.5
-const MAX_ZOOM = 2.0
+const MIN_ZOOM = 0.25
+const MAX_ZOOM = 4.0
+
+func _ready():
+  zoom = Vector2(1.5, 1.5)
+  update_sounds()
 
 func clamp_zoom():
   var z = clamp(zoom.x, MIN_ZOOM, MAX_ZOOM)
   zoom = Vector2(z, z)
+  update_sounds()
 
 func clamp_position():
   var r = Game.world_radius
@@ -44,3 +49,13 @@ func _unhandled_input(event):
     clamp_position()
 
   # TODO: pinch to zoom and test on mobile
+
+func update_sounds():
+  var viewport_size = get_viewport_rect().size
+  var max_dim = max(viewport_size.x, viewport_size.y)
+  var sounds = get_tree().get_nodes_in_group('world_sound') as Array[AudioStreamPlayer2D]
+  for sound in sounds:
+    sound.max_distance = max_dim / zoom.x
+    sound.volume_db = 0.0
+    if zoom.x < 1.0:
+      sound.volume_db -= 2.0 / zoom.x

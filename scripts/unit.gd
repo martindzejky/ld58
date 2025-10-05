@@ -17,13 +17,13 @@ var current_job: Command.Job
 var last_position: Vector2
 
 @export var wander_timer: Timer
-const MIN_WANDER_TIME = 1.0
-const MAX_WANDER_TIME = 2.0
+const MIN_WANDER_TIME = 2.0
+const MAX_WANDER_TIME = 3.0
 @export var wander_position_timer: Timer
 @onready var wander_position: Vector2 = global_position
 const MIN_WANDER_POSITION_TIME = 2.0
 const MAX_WANDER_POSITION_TIME = 4.0
-const MAX_WANDER_POSITION_DISTANCE = 30.0
+const MAX_WANDER_POSITION_DISTANCE = 50.0
 
 const MOVE_SPEED = 100.0
 const REACHED_TARGET_DISTANCE = 10.0
@@ -219,6 +219,7 @@ func move_to_position(delta: float, target_position: Vector2):
 
 func _on_wander_position_timer_timeout() -> void:
   wander_position = global_position + Vector2.UP.rotated(randf_range(0, 2 * PI)) * randf_range(0, MAX_WANDER_POSITION_DISTANCE)
+  wander_position_timer.wait_time = randf_range(MIN_WANDER_POSITION_TIME, MAX_WANDER_POSITION_TIME)
 
 func _on_job_cancelled():
   if not current_job:

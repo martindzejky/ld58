@@ -278,11 +278,9 @@ position = Vector2(35, 33)
 layer = 10
 
 [node name="resources" parent="ui" instance=ExtResource("8_5vw27")]
-anchors_preset = 1
-anchor_left = 1.0
-anchor_bottom = 0.0
-grow_horizontal = 0
-grow_vertical = 1
 
 [node name="camera" type="Camera2D" parent="."]
 script = ExtResource("1_0xm2m")
+
+[node name="listener" type="AudioListener2D" parent="camera"]
+current = true
