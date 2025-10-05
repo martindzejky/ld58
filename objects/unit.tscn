@@ -1,24 +1,420 @@
-[gd_scene load_steps=3 format=3 uid="uid://bhsbt24u6cyfc"]
+[gd_scene load_steps=14 format=3 uid="uid://bhsbt24u6cyfc"]
 
-[ext_resource type="Texture2D" uid="uid://bpijxlegjyije" path="res://sprites/dot.png" id="1_5j774"]
 [ext_resource type="Script" uid="uid://bm1hnf8p0nmkk" path="res://scripts/unit.gd" id="1_dberb"]
+[ext_resource type="Texture2D" uid="uid://b1dptw3ksm1h6" path="res://sprites/unit.png" id="2_dberb"]
+[ext_resource type="PackedScene" uid="uid://cbqmkhvtbk1d2" path="res://objects/shadow.tscn" id="3_2pk7s"]
 
-[node name="unit" type="Node2D" node_paths=PackedStringArray("debug_label", "wander_timer", "wander_position_timer", "attack_cooldown_timer", "sleep_timer", "haul_slot")]
+[sub_resource type="Animation" id="Animation_2pk7s"]
+length = 0.001
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(1, -0.15, 0, 0.15, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:scale:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(1, -0.15, 0, 0.15, 0),
+"times": PackedFloat32Array(0)
+}
+
+[sub_resource type="Animation" id="Animation_small_squash"]
+resource_name = "small_squash"
+length = 0.2
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(2, 0, 0),
+"points": PackedFloat32Array(1.1074599, 0, 0, 0.005, -0.08, 0.8738414, -0.04646775, 0.004536271, 0.024999999, 0.009072602, 1, 0, 0, 0, 0),
+"times": PackedFloat32Array(0, 0.11313442, 0.2)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:scale:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(2, 0, 0),
+"points": PackedFloat32Array(0.9441537, 0, 0, 0.012960394, 0.10206634, 1.1029236, -0.024, 0.0018, 0.016666666, -0.0017136335, 1, 0, 0, 0, 0),
+"times": PackedFloat32Array(0, 0.11313442, 0.2)
+}
+
+[sub_resource type="Animation" id="Animation_dberb"]
+resource_name = "squish"
+length = 0.3
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(2, 2, 2, 2, 1),
+"points": PackedFloat32Array(1.425, 0, 0, 0.008333334, -0.131073, 0.875, -0.044555534, 0.00015574694, 0.06385703, -0.00022321663, 1.218, -0.024200901, -0.002149105, 0.02580013, 0.0022911208, 0.926, -0.025030673, 0.001206398, 0.049980387, -0.002408894, 1, 0, 0, 0, 0),
+"times": PackedFloat32Array(0, 0.0862222, 0.18253423, 0.24169734, 0.3)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:scale:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(2, 2, 2, 2, 1),
+"points": PackedFloat32Array(0.85, 0, 0, 0.016666668, 0.20496702, 1.225, -0.0362222, 0.0026806593, 0.04725371, -0.0034970564, 0.947, -0.040867567, -0.0008661151, 0.034132563, 0.0007233788, 1.075, -0.033364013, -0.0011054277, 0.03332223, 0.0011040433, 1, 0, 0, 0, 0),
+"times": PackedFloat32Array(0, 0.0862222, 0.18253423, 0.24169734, 0.3)
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_2pk7s"]
+_data = {
+&"RESET": SubResource("Animation_2pk7s"),
+&"small_squash": SubResource("Animation_small_squash"),
+&"squish": SubResource("Animation_dberb")
+}
+
+[sub_resource type="Animation" id="Animation_hlujs"]
+resource_name = "RESET"
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("squish/animation_root/flip/sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("squish/animation_root:position:x")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.0005, 0, 0.0005, 0),
+"times": PackedFloat32Array(0.001)
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("squish/animation_root:position:y")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.0005, 0, 0.0005, 0),
+"times": PackedFloat32Array(0.001)
+}
+tracks/3/type = "bezier"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("squish/animation_root:rotation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.0005, 0, 0.0005, 0),
+"times": PackedFloat32Array(0.001)
+}
+tracks/4/type = "bezier"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("squish/animation_root:scale:x")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"handle_modes": PackedInt32Array(2),
+"points": PackedFloat32Array(1, -0.0005, 0, 0.0005, 0),
+"times": PackedFloat32Array(0.001)
+}
+tracks/5/type = "bezier"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("squish/animation_root:scale:y")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"handle_modes": PackedInt32Array(2),
+"points": PackedFloat32Array(1, -0.0005, 0, 0.0005, 0),
+"times": PackedFloat32Array(0.001)
+}
+
+[sub_resource type="Animation" id="Animation_attack"]
+resource_name = "attack"
+length = 0.25
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("squish/animation_root/flip/sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [5]
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("squish/animation_root:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(2, 0, 0, 0, 0, 0),
+"points": PackedFloat32Array(0.30543262, 0, 0, 0.083333336, -0.050905436, -0.2146755, -0.020527264, 0.012539392, 0.06280607, -0.038366046, 0.19024089, -0.021794379, -0.0124157835, 0.04101169, 0.02336347, -0.09424778, -0.02014713, 0.015576078, 0.020864561, -0.016130736, 0.036651913, -0.015205383, -0.01144743, 0.005659178, 0.0042605335, 0, -0.083333336, 0, 0, 0),
+"times": PackedFloat32Array(0, 0.06666667, 0.11900672, 0.149299, 0.17258108, 0.1905705)
+}
+
+[sub_resource type="Animation" id="Animation_carry_run"]
+resource_name = "carry_run"
+length = 0.6
+loop_mode = 1
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("squish/animation_root:position:y")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(2, 3, 0, 3, 2),
+"points": PackedFloat32Array(0, 0, 9.821736, 0, -4.1496596, -10, -0.08387095, -0.030234337, 0.08387095, 0.030234337, 0, 0, -3.4315948, 0, -3.4693878, -10, -0.084946185, -0.030234337, 0.084946185, 0.030234337, 0, 0, -3.9984882, 0, 0),
+"times": PackedFloat32Array(0, 0.14946239, 0.3, 0.44838718, 0.6)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("squish/animation_root:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(2, 2, 0),
+"points": PackedFloat32Array(-0.06981317, -0.25, 0, 0.25, 0, 0.06981317, -0.050000004, 0, 0.050000004, 0, -0.06981317, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.3, 0.6)
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("squish/animation_root/flip/sprite:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [3, 4]
+}
+tracks/3/type = "method"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("squish/squish_animation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": [&"small_squash"],
+"method": &"play"
+}, {
+"args": [&"small_squash"],
+"method": &"play"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_idle"]
+resource_name = "idle"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("squish/animation_root/flip/sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("squish/animation_root:scale:x")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(2, 2, 2, 0),
+"points": PackedFloat32Array(1, 0, 0, 0.16666667, 0, 0.935, -0.05744643, 0, 0.10922024, 0, 1.059, -0.053379428, -0.005294597, 0.055840813, 0.0055387365, 1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.34467858, 0.66495514, 1)
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("squish/animation_root:scale:y")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(2, 2, 2, 0),
+"points": PackedFloat32Array(1, 0, 0, 0.16666667, 0, 1.055, -0.05744643, 0, 0.10922024, 0, 0.982, -0.053379428, 0.0044800392, 0.055840813, -0.0046866187, 1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.34467858, 0.66495514, 1)
+}
+tracks/3/type = "bezier"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("squish/animation_root:position:x")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/4/type = "bezier"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("squish/animation_root:position:y")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/5/type = "bezier"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("squish/animation_root:rotation")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+
+[sub_resource type="Animation" id="Animation_run"]
+resource_name = "run"
+length = 0.6
+loop_mode = 1
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("squish/animation_root:position:y")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(2, 3, 0, 3, 2),
+"points": PackedFloat32Array(0, 0, 9.821736, 0, -4.1496596, -10, -0.08387095, -0.030234337, 0.08387095, 0.030234337, 0, 0, -3.4315948, 0, -3.4693878, -10, -0.084946185, -0.030234337, 0.084946185, 0.030234337, 0, 0, -3.9984882, 0, 0),
+"times": PackedFloat32Array(0, 0.14946239, 0.3, 0.44838718, 0.6)
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("squish/animation_root/flip/sprite:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [1, 2]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("squish/squish_animation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": [&"small_squash"],
+"method": &"play"
+}, {
+"args": [&"small_squash"],
+"method": &"play"
+}]
+}
+tracks/3/type = "bezier"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("squish/animation_root:rotation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"handle_modes": PackedInt32Array(2, 2, 0),
+"points": PackedFloat32Array(-0.06981317, -0.25, 0, 0.25, 0, 0.06981317, -0.050000004, -0.023271058, 0, 0, -0.06981317, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.3, 0.6)
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_main"]
+_data = {
+&"RESET": SubResource("Animation_hlujs"),
+&"attack": SubResource("Animation_attack"),
+&"carry_run": SubResource("Animation_carry_run"),
+&"idle": SubResource("Animation_idle"),
+&"run": SubResource("Animation_run")
+}
+
+[node name="unit" type="Node2D" node_paths=PackedStringArray("debug_label", "flip_node", "wander_timer", "wander_position_timer", "attack_cooldown_timer", "sleep_timer", "haul_slot", "animation_player", "squish_animation_player")]
 script = ExtResource("1_dberb")
 debug_label = NodePath("debug")
+flip_node = NodePath("squish/animation_root/flip")
 wander_timer = NodePath("wander_timer")
 wander_position_timer = NodePath("wander_position_timer")
 attack_cooldown_timer = NodePath("attack_cooldown_timer")
 sleep_timer = NodePath("sleep_timer")
-haul_slot = NodePath("haul_slot")
+haul_slot = NodePath("squish/animation_root/flip/haul_slot")
+animation_player = NodePath("animation")
+squish_animation_player = NodePath("squish/squish_animation")
 
-[node name="sprite" type="Sprite2D" parent="."]
-modulate = Color(0.07277774, 0.088193335, 0.09028817, 1)
-position = Vector2(0, -19.000004)
-scale = Vector2(22.007362, 37.75831)
-texture = ExtResource("1_5j774")
+[node name="squish" type="Node2D" parent="."]
+
+[node name="animation_root" type="Node2D" parent="squish"]
+
+[node name="flip" type="Node2D" parent="squish/animation_root"]
+
+[node name="sprite" type="Sprite2D" parent="squish/animation_root/flip"]
+position = Vector2(3, -48)
+scale = Vector2(0.4574581, 0.4574581)
+texture = ExtResource("2_dberb")
+hframes = 6
+
+[node name="haul_slot" type="Marker2D" parent="squish/animation_root/flip"]
+position = Vector2(5, -119)
+
+[node name="squish_animation" type="AnimationPlayer" parent="squish"]
+libraries = {
+&"": SubResource("AnimationLibrary_2pk7s")
+}
+
+[node name="shadow" parent="." instance=ExtResource("3_2pk7s")]
+scale = Vector2(0.29874125, 0.29874125)
 
 [node name="debug" type="Label" parent="."]
+visible = false
 offset_left = -20.0
 offset_top = -64.0
 offset_right = 20.0
@@ -36,8 +432,12 @@ one_shot = true
 [node name="sleep_timer" type="Timer" parent="."]
 one_shot = true
 
-[node name="haul_slot" type="Marker2D" parent="."]
-position = Vector2(0, -46)
+[node name="animation" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_main")
+}
+autoplay = "idle"
+next/attack = &"idle"
 
 [connection signal="timeout" from="wander_timer" to="." method="_on_wander_timer_timeout"]
 [connection signal="timeout" from="wander_position_timer" to="." method="_on_wander_position_timer_timeout"]

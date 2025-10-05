@@ -1,4 +1,4 @@
-extends Control
+extends MarginContainer
 
 @export var resource_display: PackedScene
 @export var container: Control

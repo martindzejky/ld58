@@ -1,4 +1,4 @@
-extends Control
+extends HBoxContainer
 
 @export var icon: TextureRect
 @export var amount: Label

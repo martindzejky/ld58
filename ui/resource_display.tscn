@@ -10,6 +10,7 @@
 [node name="resource_display" type="HBoxContainer" node_paths=PackedStringArray("icon", "amount", "notification")]
 offset_right = 1.0
 offset_bottom = 20.0
+alignment = 2
 script = ExtResource("1_alkvs")
 icon = NodePath("panel/container/icon")
 amount = NodePath("panel/container/text")

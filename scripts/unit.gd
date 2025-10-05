@@ -13,6 +13,8 @@ var target: Node2D
 var current_job: Command.Job
 
 @export var debug_label: Label
+@export var flip_node: Node2D
+var last_position: Vector2
 
 @export var wander_timer: Timer
 const MIN_WANDER_TIME = 1.0
@@ -31,9 +33,18 @@ const REACHED_TARGET_COMMAND_DISTANCE = 30.0
 @export var sleep_timer: Timer
 @export var haul_slot: Marker2D
 
+@export var animation_player: AnimationPlayer
+@export var squish_animation_player: AnimationPlayer
+
 func _process(delta: float) -> void:
+  var direction = global_position - last_position
+  if direction.length() > 0:
+    flip_node.scale.x = sign(direction.x)
+  last_position = global_position
+
   if not sleep_timer.is_stopped():
     debug_label.text = 'SLEEPING'
+    play_animation('idle')
     return
 
   match state:
@@ -54,6 +65,7 @@ func _process(delta: float) -> void:
       performing_job_state(delta)
 
 func idle_state():
+  play_animation('idle')
   var available_commands = get_tree().get_nodes_in_group('command')
   if available_commands.size() == 0:
     state = State.WANDERING
@@ -63,7 +75,10 @@ func idle_state():
   state = State.MOVING_TO_COMMAND
 
 func wandering_state(delta: float):
-  move_to_position(delta, wander_position)
+  if move_to_position(delta, wander_position):
+    play_animation('idle')
+  else:
+    play_animation('run')
 
 func moving_to_command_state(delta: float):
   if not target or not target is Command:
@@ -72,32 +87,38 @@ func moving_to_command_state(delta: float):
     return
 
   var reached = move_to_target(delta)
-  if reached:
-    var available = target.get_available_jobs()
+  if not reached:
+    play_animation('run')
+    return
 
-    if available.size() == 0:
-      sleep_timer.start(randf_range(0.5, 1.0))
-      state = State.MOVING_TO_HIVE
-      target = Game.hive
-      return
+  var available = target.get_available_jobs()
 
-    current_job = available.pick_random()
-    current_job.workers.append(self)
-    current_job.cancelled.connect(_on_job_cancelled)
-    current_job.completed.connect(_on_job_completed)
-    state = State.PERFORMING_JOB
+  if available.size() == 0:
+    sleep_timer.start(randf_range(0.5, 1.0))
+    state = State.MOVING_TO_HIVE
+    target = Game.hive
+    return
+
+  current_job = available.pick_random()
+  current_job.workers.append(self)
+  current_job.cancelled.connect(_on_job_cancelled)
+  current_job.completed.connect(_on_job_completed)
+  state = State.PERFORMING_JOB
 
 func moving_to_hive_state(delta: float):
   if not target:
     target = Game.hive
 
   var reached = move_to_target(delta)
-  if reached:
-    if is_carrying_item():
-      var item = haul_slot.get_child(0)
-      Game.hive.collect_resource(item)
-    state = State.IDLE
-    sleep_timer.start(randf_range(0.2, 0.5))
+  if not reached:
+    play_animation('run')
+    return
+
+  if is_carrying_item():
+    var item = haul_slot.get_child(0)
+    Game.hive.collect_resource(item)
+  state = State.IDLE
+  sleep_timer.start(randf_range(0.2, 0.5))
 
 func performing_job_state(delta: float):
   if not current_job:
@@ -109,6 +130,7 @@ func performing_job_state(delta: float):
     current_job.cancelled.disconnect(_on_job_cancelled)
     current_job.completed.disconnect(_on_job_completed)
     current_job.completed.emit()
+    sleep_timer.start(randf_range(0.2, 0.5))
     # find a new job from the same command
     # TODO: there's an edge case: if we just destroyed a resource which spawned resource items, these will not have jobs registered yet
     if current_job.command:
@@ -131,7 +153,7 @@ func performing_job_state(delta: float):
 
   var reached = move_to_position(delta, current_job.target.global_position)
   if not reached:
-    # keep moving
+    play_animation('run')
     return
 
   interact_with_job_target()
@@ -150,6 +172,7 @@ func interact_with_job_target():
     if attack_cooldown_timer.is_stopped():
       attack_cooldown_timer.start()
       current_job.target.take_damage(1) # TODO: this will be upgradable
+      play_animation('attack')
     return
 
   if current_job.target is ResourceItem:
@@ -232,3 +255,8 @@ func _on_job_completed():
     state = State.MOVING_TO_HIVE
     target = Game.hive
     return
+
+func play_animation(animation_name: String):
+  if animation_name == 'run' and is_carrying_item():
+    animation_name = 'carry_run'
+  animation_player.play(animation_name)
