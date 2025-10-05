@@ -5,6 +5,8 @@ var dragging = false
 const MIN_ZOOM = 0.25
 const MAX_ZOOM = 4.0
 
+@export var ambience_player: AudioStreamPlayer
+
 func _ready():
   zoom = Vector2(1.5, 1.5)
   update_sounds()
@@ -59,3 +61,5 @@ func update_sounds():
     sound.volume_db = 0.0
     if zoom.x < 1.0:
       sound.volume_db -= 2.0 / zoom.x
+
+  ambience_player.volume_db = -3.0 - 2.0 / zoom.x

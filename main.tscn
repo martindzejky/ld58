@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://dt4nq0nkmjiit"]
+[gd_scene load_steps=17 format=3 uid="uid://dt4nq0nkmjiit"]
 
 [ext_resource type="Script" uid="uid://b7yosgcuyw1we" path="res://scripts/camera.gd" id="1_0xm2m"]
 [ext_resource type="PackedScene" uid="uid://bwt5l87xappyf" path="res://objects/hive.tscn" id="2_lquwl"]
@@ -14,6 +14,7 @@
 [ext_resource type="PackedScene" uid="uid://d2qswu3whqv2w" path="res://objects/grass.tscn" id="11_w48qg"]
 [ext_resource type="Shader" uid="uid://bst7qku8ssd1" path="res://shaders/world_mask.gdshader" id="12_maskshader"]
 [ext_resource type="Script" uid="uid://3n3j7psjkd0v" path="res://scripts/world_mask_controller.gd" id="13_maskscript"]
+[ext_resource type="AudioStream" uid="uid://dmh34johgdsre" path="res://sounds/ambience.mp3" id="15_vivmo"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMat_world_mask"]
 shader = ExtResource("12_maskshader")
@@ -279,8 +280,14 @@ layer = 10
 
 [node name="resources" parent="ui" instance=ExtResource("8_5vw27")]
 
-[node name="camera" type="Camera2D" parent="."]
+[node name="camera" type="Camera2D" parent="." node_paths=PackedStringArray("ambience_player")]
 script = ExtResource("1_0xm2m")
+ambience_player = NodePath("ambience")
 
 [node name="listener" type="AudioListener2D" parent="camera"]
 current = true
+
+[node name="ambience" type="AudioStreamPlayer" parent="camera"]
+stream = ExtResource("15_vivmo")
+volume_db = -3.077
+autoplay = true
