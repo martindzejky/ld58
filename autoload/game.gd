@@ -23,6 +23,7 @@ var world_radius: float = 100.0:
 const WORLD_RADIUS_CHANGE_TIME = 2
 
 @export var upgrade_sound: AudioStreamPlayer
+@export var reveal_sound: AudioStream
 
 func collect_resource(resource: ResourceItem):
   var type = resource.type

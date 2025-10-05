@@ -38,3 +38,18 @@ func reveal():
   parent.visible = true
   var tween = create_tween()
   tween.tween_property(get_parent(), 'modulate:a', 1.0, REVEAL_TIME)
+
+  var sound_player = AudioStreamPlayer2D.new()
+  get_parent().add_child(sound_player)
+  sound_player.stream = Game.reveal_sound
+  sound_player.global_position = parent.global_position
+  sound_player.play()
+  sound_player.finished.connect(sound_player.queue_free)
+
+  # ugly but whatever
+  var camera = get_viewport().get_camera_2d()
+  var viewport_size = get_viewport_rect().size
+  var max_dim = max(viewport_size.x, viewport_size.y)
+  sound_player.max_distance = max_dim
+  if camera.zoom.x < 1.0:
+    sound_player.volume_db -= 2.0 / camera.zoom.x
