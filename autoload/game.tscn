@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://cptdnpvj16px0"]
+[gd_scene load_steps=14 format=3 uid="uid://cptdnpvj16px0"]
 
 [ext_resource type="Script" uid="uid://cnfp3mw0yduwt" path="res://autoload/game.gd" id="1_1w5w3"]
 [ext_resource type="Script" uid="uid://bibkfwydm1vt5" path="res://scripts/task.gd" id="2_j5esd"]
@@ -22,10 +22,25 @@ stone = 4
 upgrades = Array[PackedScene]([ExtResource("5_jcj26"), ExtResource("3_rat6i")])
 metadata/_custom_type_script = "uid://bibkfwydm1vt5"
 
+[sub_resource type="Resource" id="Resource_mdg26"]
+script = ExtResource("2_j5esd")
+stone = 8
+fruit = 6
+upgrades = Array[PackedScene]([ExtResource("3_rat6i"), ExtResource("4_jcj26")])
+metadata/_custom_type_script = "uid://bibkfwydm1vt5"
+
+[sub_resource type="Resource" id="Resource_1t6qc"]
+script = ExtResource("2_j5esd")
+wood = 20
+stone = 20
+fruit = 20
+upgrades = Array[PackedScene]([ExtResource("5_jcj26"), ExtResource("4_jcj26")])
+metadata/_custom_type_script = "uid://bibkfwydm1vt5"
+
 [node name="game" type="Node" node_paths=PackedStringArray("upgrade_sound")]
 process_mode = 3
 script = ExtResource("1_1w5w3")
-tasks = Array[ExtResource("2_j5esd")]([SubResource("Resource_j5esd"), SubResource("Resource_pjkha")])
+tasks = Array[ExtResource("2_j5esd")]([SubResource("Resource_j5esd"), SubResource("Resource_pjkha"), SubResource("Resource_mdg26"), SubResource("Resource_1t6qc")])
 upgrade_sound = NodePath("upgrade")
 reveal_sound = ExtResource("3_kujy2")
 end_screen = ExtResource("4_g10wv")
