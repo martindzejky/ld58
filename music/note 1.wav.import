@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://b8m16v4cbyq3o"
+path="res://.godot/imported/note 1.wav-c300c8cff73cbcfbb9508330315b0332.sample"
+
+[deps]
+
+source_file="res://music/note 1.wav"
+dest_files=["res://.godot/imported/note 1.wav-c300c8cff73cbcfbb9508330315b0332.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

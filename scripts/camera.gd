@@ -7,6 +7,8 @@ const MAX_ZOOM = 4.0
 
 @export var ambience_player: AudioStreamPlayer
 
+signal zoom_changed
+
 func _ready():
   zoom = Vector2(1.5, 1.5)
   update_sounds()
@@ -15,6 +17,7 @@ func clamp_zoom():
   var z = clamp(zoom.x, MIN_ZOOM, MAX_ZOOM)
   zoom = Vector2(z, z)
   update_sounds()
+  zoom_changed.emit()
 
 func clamp_position():
   var r = Game.world_radius

@@ -1,0 +1,43 @@
+[gd_resource type="AudioStreamRandomizer" load_steps=20 format=3 uid="uid://7rbfhdjwh8rt"]
+
+[ext_resource type="AudioStream" uid="uid://dde2wtiqrdvdc" path="res://music/note.wav" id="1_7iads"]
+[ext_resource type="AudioStream" uid="uid://ciqkgch1osvyn" path="res://music/note 1.wav" id="2_xer0j"]
+[ext_resource type="AudioStream" uid="uid://bi0u5vscxbbeg" path="res://music/note 2.wav" id="3_n2"]
+[ext_resource type="AudioStream" uid="uid://dynsccwfp4muu" path="res://music/note 3.wav" id="4_n3"]
+[ext_resource type="AudioStream" uid="uid://ck3rsilpxguq8" path="res://music/note 4.wav" id="5_n4"]
+[ext_resource type="AudioStream" uid="uid://d2wawvlmu0j10" path="res://music/note 5.wav" id="6_n5"]
+[ext_resource type="AudioStream" uid="uid://bh46st6p5ym02" path="res://music/note 6.wav" id="7_n6"]
+[ext_resource type="AudioStream" uid="uid://goicj50k4ogu" path="res://music/note 7.wav" id="8_n7"]
+[ext_resource type="AudioStream" uid="uid://b6ftw46p47n0b" path="res://music/note 8.wav" id="9_n8"]
+[ext_resource type="AudioStream" uid="uid://bh8te1d3j22uo" path="res://music/note 9.wav" id="10_n9"]
+[ext_resource type="AudioStream" uid="uid://benc6es0tge2j" path="res://music/note 10.wav" id="11_n10"]
+[ext_resource type="AudioStream" uid="uid://duejy5idmxuwd" path="res://music/note 11.wav" id="12_n11"]
+[ext_resource type="AudioStream" uid="uid://bxqsfvrgsxd21" path="res://music/note 12.wav" id="13_n12"]
+[ext_resource type="AudioStream" uid="uid://c7k2jnul0dw3a" path="res://music/note 13.wav" id="14_n13"]
+[ext_resource type="AudioStream" uid="uid://d02cjyw8bqkmo" path="res://music/note 14.wav" id="15_n14"]
+[ext_resource type="AudioStream" uid="uid://f15717s27ln3" path="res://music/note 15.wav" id="16_n15"]
+[ext_resource type="AudioStream" uid="uid://cn8481mrq0ohy" path="res://music/note 16.wav" id="17_n16"]
+[ext_resource type="AudioStream" uid="uid://ihfo5reyqynj" path="res://music/note 17.wav" id="18_n17"]
+[ext_resource type="AudioStream" uid="uid://dohq42n23t37q" path="res://music/note 18.wav" id="19_n18"]
+
+[resource]
+streams_count = 19
+stream_0/stream = ExtResource("1_7iads")
+stream_1/stream = ExtResource("2_xer0j")
+stream_2/stream = ExtResource("3_n2")
+stream_3/stream = ExtResource("4_n3")
+stream_4/stream = ExtResource("5_n4")
+stream_5/stream = ExtResource("6_n5")
+stream_6/stream = ExtResource("7_n6")
+stream_7/stream = ExtResource("8_n7")
+stream_8/stream = ExtResource("9_n8")
+stream_9/stream = ExtResource("10_n9")
+stream_10/stream = ExtResource("11_n10")
+stream_11/stream = ExtResource("12_n11")
+stream_12/stream = ExtResource("13_n12")
+stream_13/stream = ExtResource("14_n13")
+stream_14/stream = ExtResource("15_n14")
+stream_15/stream = ExtResource("16_n15")
+stream_16/stream = ExtResource("17_n16")
+stream_17/stream = ExtResource("18_n17")
+stream_18/stream = ExtResource("19_n18")

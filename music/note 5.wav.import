@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://crd6ff3lvk5kf"
+path="res://.godot/imported/note 5.wav-b3c4b2888fd407e592792d9a934d67cf.sample"
+
+[deps]
+
+source_file="res://music/note 5.wav"
+dest_files=["res://.godot/imported/note 5.wav-b3c4b2888fd407e592792d9a934d67cf.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2
