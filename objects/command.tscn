@@ -1,9 +1,11 @@
-[gd_scene load_steps=13 format=3 uid="uid://b2ddk12l52hbt"]
+[gd_scene load_steps=15 format=3 uid="uid://b2ddk12l52hbt"]
 
 [ext_resource type="Script" uid="uid://bovhlu5v42t26" path="res://scripts/command.gd" id="1_k2bee"]
 [ext_resource type="Texture2D" uid="uid://b5tlu35sgeq8i" path="res://sprites/command_flag.png" id="2_k2bee"]
 [ext_resource type="PackedScene" uid="uid://cbqmkhvtbk1d2" path="res://objects/shadow.tscn" id="3_af1rb"]
 [ext_resource type="Texture2D" uid="uid://cxfdduecdycdf" path="res://sprites/command_radius.png" id="4_tubko"]
+[ext_resource type="AudioStream" uid="uid://cdmpl71gbxb13" path="res://sounds/remove_command.wav" id="5_bqivt"]
+[ext_resource type="AudioStream" uid="uid://djs2ouqq85nld" path="res://sounds/plant_command.wav" id="5_p2fra"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_6nnwp"]
 radius = 130.00385
@@ -240,6 +242,21 @@ tracks/6/keys = {
 "method": &"queue_free"
 }]
 }
+tracks/7/type = "audio"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("sounds")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("5_bqivt")
+}],
+"times": PackedFloat32Array(0)
+}
+tracks/7/use_blend = true
 
 [sub_resource type="Animation" id="Animation_bqivt"]
 resource_name = "entry"
@@ -327,6 +344,21 @@ tracks/6/keys = {
 "update": 0,
 "values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
 }
+tracks/7/type = "audio"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("sounds")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("5_p2fra")
+}],
+"times": PackedFloat32Array(0.26666668)
+}
+tracks/7/use_blend = true
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_li81v"]
 _data = {
@@ -374,6 +406,8 @@ libraries = {
 &"": SubResource("AnimationLibrary_li81v")
 }
 autoplay = "entry"
+
+[node name="sounds" type="AudioStreamPlayer2D" parent="." groups=["world_sound"]]
 
 [connection signal="area_entered" from="job_area" to="." method="_on_job_area_area_entered"]
 [connection signal="area_exited" from="job_area" to="." method="_on_job_area_area_exited"]

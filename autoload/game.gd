@@ -22,6 +22,8 @@ var world_radius: float = 100.0:
 
 const WORLD_RADIUS_CHANGE_TIME = 2
 
+@export var upgrade_sound: AudioStreamPlayer
+
 func collect_resource(resource: ResourceItem):
   var type = resource.type
   if type in resources:
@@ -50,6 +52,7 @@ func update_task_completion():
     var tween = create_tween()
     tween.set_trans(Tween.TRANS_QUAD)
     tween.tween_property(self, 'world_radius', tasks[0].world_radius, WORLD_RADIUS_CHANGE_TIME)
+    upgrade_sound.play()
 
 func check_resource(type: ResourceItem.Type, required: int):
   if required <= 0: return true

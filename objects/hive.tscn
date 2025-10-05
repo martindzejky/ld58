@@ -1,8 +1,24 @@
-[gd_scene load_steps=7 format=3 uid="uid://bwt5l87xappyf"]
+[gd_scene load_steps=8 format=3 uid="uid://bwt5l87xappyf"]
 
 [ext_resource type="Script" uid="uid://lrnnti74lwrj" path="res://scripts/hive.gd" id="1_f03at"]
 [ext_resource type="Texture2D" uid="uid://b0cpkvq5pxhp5" path="res://sprites/hut.png" id="2_f03at"]
 [ext_resource type="PackedScene" uid="uid://cbqmkhvtbk1d2" path="res://objects/shadow.tscn" id="3_ejbv4"]
+[ext_resource type="AudioStream" uid="uid://cy08kfsqacutl" path="res://sounds/collect_random.tres" id="4_iaro7"]
+
+[sub_resource type="Animation" id="Animation_iaro7"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("sprite_parent:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
 
 [sub_resource type="Animation" id="Animation_ejbv4"]
 resource_name = "squish"
@@ -20,30 +36,16 @@ tracks/0/keys = {
 "values": [Vector2(0.74, 1.295), Vector2(1.196, 0.958), Vector2(0.948, 1.154), Vector2(1.101, 0.945), Vector2(1, 1)]
 }
 
-[sub_resource type="Animation" id="Animation_iaro7"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("sprite_parent:scale")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(1, 1)]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_iaro7"]
 _data = {
 &"RESET": SubResource("Animation_iaro7"),
 &"squish": SubResource("Animation_ejbv4")
 }
 
-[node name="hive" type="Node2D" node_paths=PackedStringArray("animation_player")]
+[node name="hive" type="Node2D" node_paths=PackedStringArray("animation_player", "collect_sound")]
 script = ExtResource("1_f03at")
 animation_player = NodePath("animation")
+collect_sound = NodePath("collect")
 
 [node name="sprite_parent" type="Node2D" parent="."]
 
@@ -58,3 +60,6 @@ texture = ExtResource("2_f03at")
 libraries = {
 &"": SubResource("AnimationLibrary_iaro7")
 }
+
+[node name="collect" type="AudioStreamPlayer2D" parent="." groups=["world_sound"]]
+stream = ExtResource("4_iaro7")

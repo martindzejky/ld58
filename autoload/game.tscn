@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://cptdnpvj16px0"]
+[gd_scene load_steps=7 format=3 uid="uid://cptdnpvj16px0"]
 
 [ext_resource type="Script" uid="uid://cnfp3mw0yduwt" path="res://autoload/game.gd" id="1_1w5w3"]
 [ext_resource type="Script" uid="uid://bibkfwydm1vt5" path="res://scripts/task.gd" id="2_j5esd"]
+[ext_resource type="AudioStream" uid="uid://q4afstt7a8tm" path="res://sounds/upgrade.mp3" id="3_pjkha"]
 
 [sub_resource type="Resource" id="Resource_j5esd"]
 script = ExtResource("2_j5esd")
@@ -20,6 +21,11 @@ stone = 8
 fruit = 6
 metadata/_custom_type_script = "uid://bibkfwydm1vt5"
 
-[node name="game" type="Node"]
+[node name="game" type="Node" node_paths=PackedStringArray("upgrade_sound")]
 script = ExtResource("1_1w5w3")
 tasks = Array[ExtResource("2_j5esd")]([SubResource("Resource_j5esd"), SubResource("Resource_pjkha"), SubResource("Resource_kujy2")])
+upgrade_sound = NodePath("upgrade")
+
+[node name="upgrade" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_pjkha")
+volume_db = -3.077

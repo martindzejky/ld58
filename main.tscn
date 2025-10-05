@@ -180,7 +180,7 @@ position = Vector2(428, -74)
 position = Vector2(356, 206)
 
 [node name="blob10" parent="world_layer/world_sort" instance=ExtResource("10_ycdy4")]
-position = Vector2(363, 302)
+position = Vector2(351, 298)
 
 [node name="blob11" parent="world_layer/world_sort" instance=ExtResource("10_ycdy4")]
 position = Vector2(156, 269)
