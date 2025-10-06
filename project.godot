@@ -15,6 +15,7 @@ config/description="Grow your village as the world expands."
 config/version="7"
 run/main_scene="uid://dt4nq0nkmjiit"
 config/features=PackedStringArray("4.5", "GL Compatibility")
+boot_splash/bg_color=Color(0.94509804, 0.9411765, 0.8980392, 1)
 config/icon="uid://b0cpkvq5pxhp5"
 
 [audio]
@@ -45,6 +46,10 @@ command=""
 
 theme/custom="uid://bs7ko55pvpltx"
 theme/custom_font="uid://do57yg05iwy5c"
+
+[input_devices]
+
+pointing/emulate_mouse_from_touch=false
 
 [layer_names]
 
