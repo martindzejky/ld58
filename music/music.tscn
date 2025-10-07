@@ -3,13 +3,18 @@
 [ext_resource type="Script" uid="uid://bb0gt25qmkyba" path="res://scripts/music.gd" id="1_luf1b"]
 [ext_resource type="AudioStream" uid="uid://7rbfhdjwh8rt" path="res://music/random_note.tres" id="2_gw4jf"]
 
-[node name="music" type="Node" node_paths=PackedStringArray("notes_player")]
+[node name="music" type="Node" node_paths=PackedStringArray("timer", "notes_player")]
 process_mode = 3
 script = ExtResource("1_luf1b")
+timer = NodePath("timer")
 notes_player = NodePath("notes")
-note_timer_min = 1.0
-note_timer_max = 6.0
 
 [node name="notes" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("2_gw4jf")
 bus = &"music"
+
+[node name="timer" type="Timer" parent="."]
+wait_time = 3.0
+autostart = true
+
+[connection signal="timeout" from="timer" to="." method="_on_timer_timeout"]
