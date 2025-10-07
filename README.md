@@ -9,6 +9,8 @@ Use only your mouse. Click and drag to move, mouse wheel to zoom. Click to give 
 ## Known issues
 
 - Well, there’s nothing really to do with the resources you collect. That was “out of scope” for the compo…
+- Sometimes the generative music breaks and plays too many chords at the same time, resulting in a LOUD mishmash of notes.
+- Sometimes resources near a flag are ignored by units, remove and place the command again to have them register the resources properly.
 - Let me know if you find any issues!
 
 ## Screenshots
