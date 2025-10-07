@@ -12,7 +12,7 @@ config_version=5
 
 config/name="Outward"
 config/description="Grow your village as the world expands."
-config/version="7"
+config/version="7.1"
 run/main_scene="uid://dt4nq0nkmjiit"
 config/features=PackedStringArray("4.5", "GL Compatibility")
 boot_splash/bg_color=Color(0.94509804, 0.9411765, 0.8980392, 1)
