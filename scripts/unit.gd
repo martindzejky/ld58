@@ -81,7 +81,7 @@ func wandering_state(delta: float):
 
 func moving_to_command_state(delta: float):
   if not target or not target is Command:
-    state = State.MOVING_TO_HIVE
+    state = State.IDLE
     target = Game.hive
     return
 
@@ -121,7 +121,7 @@ func moving_to_hive_state(delta: float):
 
 func performing_job_state(delta: float):
   if not current_job:
-    state = State.MOVING_TO_HIVE
+    state = State.IDLE
     target = Game.hive
     return
 
@@ -163,7 +163,7 @@ func is_carrying_item() -> bool:
 func interact_with_job_target():
   if not current_job or not current_job.target:
     current_job = null
-    state = State.MOVING_TO_HIVE
+    state = State.IDLE
     target = Game.hive
     return
 
@@ -194,8 +194,7 @@ func interact_with_job_target():
 
   # fallback
   current_job = null
-  state = State.MOVING_TO_HIVE
-  target = Game.hive
+  state = State.IDLE
 
 func _on_wander_timer_timeout():
   state = State.IDLE
@@ -227,7 +226,7 @@ func _on_job_cancelled():
   current_job.cancelled.disconnect(_on_job_cancelled)
   current_job.completed.disconnect(_on_job_completed)
   current_job = null
-  state = State.MOVING_TO_HIVE
+  state = State.IDLE
   target = Game.hive
 
 func _on_job_completed():
